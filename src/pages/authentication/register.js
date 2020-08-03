@@ -1,5 +1,7 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+// withRouter, even if it's not a class it can use router props
+import { Link, withRouter } from "react-router-dom";
+import Propstypes from "prop-types";
 import "./auth.css";
 import Logo from "../../static/img/logoClassUp.png";
 import Log from "../../static/img/examDay.svg";
@@ -7,7 +9,7 @@ import Log from "../../static/img/examDay.svg";
 import { Image } from "react-bootstrap";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 
-export const Register = () => {
+export const Register = ({ history }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -27,6 +29,7 @@ export const Register = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
+    history.push("/login");
   };
 
   return (
@@ -57,7 +60,7 @@ export const Register = () => {
                   placeholder="Last Name"
                   type="text"
                   name="lastname"
-                  value={email}
+                  value={lastname}
                   onChange={(e) => handleChange(e)}
                 />
               </FormGroup>
@@ -101,5 +104,5 @@ export const Register = () => {
     </Fragment>
   );
 };
-
-export default Register;
+Register.propTypes = { history: Propstypes.object };
+export default withRouter(Register);
