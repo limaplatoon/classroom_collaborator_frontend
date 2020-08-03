@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import "./auth.css";
 import Logo from "../../static/img/logoClassUp.png";
-import Log from "../../static/img/undraw_new_entries_nh3h.svg";
+import Log from "../../static/img/examDay.svg";
 
 import { Image } from "react-bootstrap";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
@@ -13,7 +13,7 @@ export const Register = () => {
     password: "",
     isMobile: false,
   });
-  const { email, password, isMobile } = formData;
+  const { email, password, firstname, lastname, isMobile } = formData;
   window.addEventListener(
     "resize",
     () => {
@@ -42,11 +42,21 @@ export const Register = () => {
             <p className="free-membership">Free Membership</p>
             <Form className="mt-3" onSubmit={(e) => onSubmit(e)}>
               <FormGroup>
-                <Label>Full Name</Label>
+                <Label>First Name</Label>
                 <Input
-                  placeholder="Email"
-                  type="email"
-                  name="email"
+                  placeholder="First Name"
+                  type="text"
+                  name="firstname"
+                  value={firstname}
+                  onChange={(e) => handleChange(e)}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label>Last Name</Label>
+                <Input
+                  placeholder="Last Name"
+                  type="text"
+                  name="lastname"
                   value={email}
                   onChange={(e) => handleChange(e)}
                 />
@@ -72,11 +82,11 @@ export const Register = () => {
                 />
               </FormGroup>
               <Button className="btn btn-lg btn-primary btn-block">
-                Login
+                Create Account
               </Button>
               <div className="text-center pt-3">
                 <Link to="/login">
-                  <p> Already have an account?</p>
+                  <p> Already have an account? Sign in</p>
                 </Link>
               </div>
             </Form>
