@@ -1,25 +1,24 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import Container from 'react-bootstrap/Container'
-import HomePage from './pages/HomePage'
-import Navbar from './components/Navbar/Navbar'
-
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+// import { Provider } from "react-redux"; replace divs with Provider here for using redux
+import App from "./pages/App";
+import Login from "./pages/authentication/login";
+import Register from "./pages/authentication/register";
+import { createBrowserHistory } from "history";
+import "bootstrap/dist/css/bootstrap.min.css";
+const history = createBrowserHistory();
+const MainApp = () => {
   return (
-    <div className="App">
-      <Navbar>
-        <Container>
-          <Router>
-            <h1>hello</h1>
-            <Route exact path='/' component={HomePage} /> 
-          </Router>
-        </Container>
-      </Navbar>
+    <div>
+      <Router history={history}>
+        <Switch>
+          <Route exact path="/" component={App} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
+        </Switch>
+      </Router>
     </div>
   );
-}
+};
 
-export default App;
+export default MainApp;
