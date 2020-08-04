@@ -30,10 +30,15 @@ const EventForm = (props) => {
     if (!title) {
       setTitleWarning(true)
     } else {
-    props.addEvent(title, startTime, stopTime, description, location, viewable)
+    props.addEvent(props.eventDetails.id, title, startTime, stopTime, description, location, viewable)
     }
   }
 
+  const handleDelete = (event) => {
+    event.preventDefault()
+    props.deleteEvent(props.eventDetails.id)
+  }
+  
   const handleClose = (event) => {
     event.preventDefault()
     props.closePopup()
@@ -105,9 +110,9 @@ const EventForm = (props) => {
               <Button variant="primary" style={{marginLeft: '5px'}} onClick={handleClose}>
                 Cancel
               </Button>
-
+              {(props.eventDetails.id && <Button variant="primary" style={{marginLeft: '5px'}} onClick={handleDelete}>Delete</Button>)}
               <Button variant="primary" style={{marginLeft: '5px'}} type="submit" onClick={handleSubmit}>
-                Add Event
+                {(props.eventDetails.id) ? 'Update' : 'Create' }
               </Button>
             </div>
           </Col>

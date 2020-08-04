@@ -1,8 +1,8 @@
-import React, {useState, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import Popup from 'reactjs-popup'
-import fakeEvents from './fakeEvents'
+import API from '../API/EventsAPI'
 
 
 import 'react-big-calendar/lib/css/react-big-calendar.css'
@@ -17,8 +17,7 @@ const setDateTime = (date, seconds) => {
 
 const MyCalenderPage = () => {
   const [openPopup, setOpenPopup] = useState(false)
-  const [events, setEvents] = useState(fakeEvents)
-  const [eventIndex, setEventIndex] = useState(-1)
+  const [events, setEvents] = useState([])
   const [eventDetails, setEventDetails] = useState({
     title: undefined,
     start: 0,
@@ -28,9 +27,17 @@ const MyCalenderPage = () => {
     viewable: false,
   })
 
+  const loadEvents = async () => {
+    const response = await API.getEvents()
+    const responseJson = await response.json()
+    setEvents(responseJson)
+  }
+  
+  useEffect(() => {
+    loadEvents()
+  }, [])
   
   const handleSelectSlot = ({start, end}) => {
-    setEventIndex(-1)
     setEventDetails({
       title: '',
       start: start,
@@ -43,8 +50,10 @@ const MyCalenderPage = () => {
   }
   
   const handleSelectEvent = (event) => {
-    setEventIndex(events.indexOf(event))
-    setEventDetails({...event})
+    let details = {...event}
+    details.start = new Date(details.start)
+    details.end = new Date(details.end)
+    setEventDetails(details)
     setOpenPopup(true)
   }
   
@@ -52,27 +61,35 @@ const MyCalenderPage = () => {
     setOpenPopup(false)
   }
   
-  const addEvent = (title, startTime, stopTime, description, location, viewable) => {
+  const addEvent = async (eventID, title, startTime, stopTime, description, location, viewable) => {
     setOpenPopup(false)
     setDateTime(eventDetails.start, startTime)
     setDateTime(eventDetails.end, stopTime)
-    const newDetails = {
+    const eventObj = {
       title: title,
       start: eventDetails.start,
       end: eventDetails.end,
       description: description,
       location: location,
       viewable: viewable,
+      userID: 1,
     }
-
-    if (eventIndex > -1) {
-      const newEvents = [...events]
-      newEvents[eventIndex] = newDetails
-      setEvents(newEvents)
-      console.log(eventIndex)
+    
+    if (eventID) {
+      const response = await API.updateEvent(eventID, eventObj)
+      // const responseJson = await response.json()
     } else {
-      setEvents([...events, newDetails])
+      const response = await API.newEvent(eventObj)
+      // const responseJson = await response.json()
     }
+    loadEvents()
+  }
+
+  const deleteEvent = async (eventID) => {
+    const response = await API.deleteEvent(eventID)
+    // const responseJson = await response.json()
+    loadEvents()
+    setOpenPopup(false)
   }
 
   const eventStyleGetter = (event) => {
@@ -100,6 +117,7 @@ const MyCalenderPage = () => {
       >
         <EventForm
           addEvent={addEvent}
+          deleteEvent={deleteEvent}
           eventDetails={eventDetails}
           closePopup={handlePopupClose}
         />
