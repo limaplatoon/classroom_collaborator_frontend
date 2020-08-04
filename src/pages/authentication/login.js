@@ -1,13 +1,14 @@
 import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import "./auth.css";
 import Logo from "../../static/img/logoClassUp.png";
 import Log from "../../static/img/study-group-2018.png";
+import Propstypes from "prop-types";
 
 import { Image } from "react-bootstrap";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 
-export const Login = () => {
+export const Login = ({ history }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -27,6 +28,7 @@ export const Login = () => {
   };
   const onSubmit = async (e) => {
     e.preventDefault();
+    history.push("../");
   };
 
   return (
@@ -87,4 +89,5 @@ export const Login = () => {
   );
 };
 
-export default Login;
+export default withRouter(Login);
+Login.propTypes = { history: Propstypes.object };

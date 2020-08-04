@@ -3,7 +3,7 @@ import React from "react";
 const HomePage = () => {
   return (
     <div>
-      <h1>Hello, this is a fake homepage</h1>
+      <h1>Welcome, This is My Dashboard</h1>
     </div>
   );
 };
