@@ -1,7 +1,7 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 import {Navbar as BootstrapNavbar} from 'react-bootstrap'
 import Nav from 'react-bootstrap/Nav'
-import Button from 'react-bootstrap/Button'
 import Image from 'react-bootstrap/Image'
 
 import './NavBar.css'
@@ -14,12 +14,14 @@ const Navbar = () => {
   return (
     <div>
       <BootstrapNavbar bg="light" variant="light">
-        <BootstrapNavbar.Brand href="#home">
-          <Image className='navbarLogo' src={logo} roundedCircle />
+        <BootstrapNavbar.Brand>
+          <Link to='/' style={{ textDecoration: 'none' }}>
+            <Image className='navbarLogo' src={logo} roundedCircle />
+          </Link>
         </BootstrapNavbar.Brand>
         <Nav className="mr-auto">
-          <Nav.Link href="#my-calendar">My Calendar</Nav.Link>
-          <Nav.Link href="#my-classes">My Classes</Nav.Link>
+          <Nav.Link as={Link} to='/my-calender'>My Calendar</Nav.Link>
+          <Nav.Link as={Link} to='/test'>My Classes</Nav.Link>
         </Nav>
         <BootstrapNavbar.Brand href="#notifications">
           <Image className='navbarImage' src={bellIcon} />
