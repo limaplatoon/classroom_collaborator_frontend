@@ -1,0 +1,77 @@
+.bg {
+    /* Full height */
+    width: 110%;
+    height: auto;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.free-membership {
+    height: 19.7px;
+    width: 320px;
+    color: #8798ad;
+    font-family: Rubik;
+    font-size: 15px;
+    line-height: 22px;
+    text-align: center;
+}
+
+.bgregister {
+    /* Full height */
+    width: auto;
+    height: auto;
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.please-enter-your-cr {
+    height: 22px;
+    width: 287.66px;
+    color: #8798ad;
+    font-family: Rubik;
+    font-size: 15px;
+    line-height: 22px;
+}
+
+.btn {
+    background-color: #2e5bff;
+}
+
+.logo {
+    width: 60%;
+    height: auto;
+}
+
+.sign-in-to-class-up {
+    height: 32px;
+    width: 287.96px;
+    color: #2e384d;
+    font-family: Rubik;
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 32px;
+}
+
+.join-class-up {
+    height: 28.65px;
+    width: 201px;
+    color: #2e384d;
+    font-family: Rubik;
+    font-size: 34px;
+    font-weight: 300;
+    line-height: 32px;
+    text-align: center;
+}
+
+.centerdiv {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
