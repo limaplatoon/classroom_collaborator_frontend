@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/authentication/login";
 import Register from "./pages/authentication/register";
@@ -10,14 +10,27 @@ import MyCalenderPage from './pages/MyCalenderPage';
 import TestPage from './pages/TestPage';
 import Container from "react-bootstrap/Container";
 
+
+
+
 const history = createBrowserHistory();
-const MainApp = () => {
+const App = () => {
+  const [navRenderSwitch, setNavRenderSwitch] = useState(true)
+
+  const flipNavRenderSwitch = () => {
+    setNavRenderSwitch(!navRenderSwitch)
+  }
+
+  const CalenderRenderer = (props) => {
+    return <MyCalenderPage flipNavRenderSwitch={flipNavRenderSwitch} />
+  }
+
   const DefaultContainer = () => (
     <Fragment>
       <Navbar />
       <Container>
         <Route exact path='/' component={HomePage} /> 
-        <Route exact path='/my-calender' component={MyCalenderPage} /> 
+        <Route exact path='/my-calender' render={CalenderRenderer} /> 
         <Route exact path='/test' component={TestPage} /> 
       </Container>
     </Fragment>
@@ -36,4 +49,4 @@ const MainApp = () => {
   );
 };
 
-export default MainApp;
+export default App;

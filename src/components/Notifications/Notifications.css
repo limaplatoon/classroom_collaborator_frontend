@@ -1,0 +1,9 @@
+.alertItem:hover {
+  color: red;
+  text-decoration: line-through;
+}
+
+.alertItem {
+  cursor: pointer;
+  font-weight: 500;
+}
