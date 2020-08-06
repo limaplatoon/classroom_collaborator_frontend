@@ -9,9 +9,11 @@ class ReviewList extends Component {
 		  const review= this.props.Reviews.map(Rev => {
 			return(
 
-<div className="jumbo" key={Rev.id} >
+<div className="jumbo" key={Rev.id}>
 <Jumbotron>
+<div class="container">
 <p>
+
 	Here we will display each Review Information
 	maybe something like <br></br>
 	{Rev.id} <br></br>
@@ -21,7 +23,9 @@ class ReviewList extends Component {
 	{Rev.Professor} <br></br>
 
 </p>
+</div>
 </Jumbotron>
+
 </div> 
 			)
 		  })

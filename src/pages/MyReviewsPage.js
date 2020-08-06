@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import Jumbotron from 'react-bootstrap/Jumbotron'
+// import Jumbotron from 'react-bootstrap/Jumbotron'
 import Form from 'react-bootstrap/form'
 // import api from '../API/ReviewsAPI' 
-import ReviewList from '../components/ReviewsList'
+import ReviewList from '../components/Reviews/ReviewsList'
 import ReviewForm from '../ReviewForm/ReviewForm'
 
 const MyReviewsPage = () => {
@@ -10,7 +10,7 @@ const MyReviewsPage = () => {
 //set the reviews for the current user in a list in state 	
 const [reviews, setreviews] = useState([{id:1,User:'Michael',class_section:'Section AB345',Description: "I loved this class",Professor: "Dr. Professorson"},{id:2,User:'John',class_section:'Section TQ765',Description: "I Hated this class",Professor: "Mr. Professordaughter"},{id:1,User:'Michael',class_section:'Section AB346',Description: "I loved this class",Professor: "Dr. Professorson"},{id:2,User:'John',class_section:'Section TQ766',Description: "I Hated this class",Professor: "Mr. Professordaughter"}])
 
-const [UserSections, setUserSections] = useState([{}])
+const [UserSections, setUserSections] = useState([{Section:'A1234',Professor:'Mr. Jorgenson'},{Section:'B7689',Professor:'Mrs. Jorgensonmeister'}])
 
 
 //we'll fetch 
@@ -21,8 +21,8 @@ const [UserSections, setUserSections] = useState([{}])
 	// });
 
 // useEffect(() => {
-	// api.fetchUserSections().then(listOfMovies => {
-	// 	setreviews(listOfMovies);
+	// ClassSectionAPI.fetchCurrentUserCLasses().then(listOfclasses => {
+	// 	setreviews(listOfClasses);
 	// });
 
 

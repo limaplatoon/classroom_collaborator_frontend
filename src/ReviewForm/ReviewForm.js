@@ -1,24 +1,40 @@
-import React, {useState} from 'react'
+import React, { Component } from 'react'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 
 
-const ReviewForm = (props) => {
+class ReviewForm extends Component {
 
-// buildOptions
+renderOptions = () => {
+		console.log(this.props.UserSections.length)
+		const options = this.props.UserSections.map((Option,index) => {
+			return(
+				<option classname = "Options" value = "Hello World" key = {index} >
+				{Option.Section}, {Option.Professor}
+				</option>
+			)
+		})
+		console.log({options})
+		return(
+		<Form.Control as="select" size="lg">
+				  {options}
+        </Form.Control>
+		  )
+
+	
+}
 
 
 
 
-return (
-	<form onSubmit={e => this.props.handle_login(e, this.state)}>
+render() {
+	return (
+		<form>
 		<Form.Group>
 			<label>Select Your Class Below</label>
-		<Form.Control as="select" size="lg">
-        <option>A1234 Mr Professorson</option>
-        <option>B3652 dr. philosopher</option>
-        <option>K7532 ms. Smith</option>
-        </Form.Control>
+			<React.Fragment>
+			  {this.renderOptions()}
+			</React.Fragment>
 		<br></br>
         <Form.Control size="lg" type="text" placeholder="Description" />
 		</Form.Group>
@@ -28,13 +44,7 @@ return (
 )
 
 }
-
-
-
-
-
-
-
+}
 
 export default ReviewForm
 
