@@ -6,7 +6,7 @@ import API from '../API/EventsAPI'
 
 
 import 'react-big-calendar/lib/css/react-big-calendar.css'
-import EventForm from '../EventForm/EventForm'
+import EventForm from '../components/EventForm/EventForm'
 const localizer = momentLocalizer(moment);
 
 const setDateTime = (date, seconds) => {
@@ -15,7 +15,7 @@ const setDateTime = (date, seconds) => {
   date.setHours(hour, minutes)
 }
 
-const MyCalenderPage = () => {
+const MyCalenderPage = ({flipNavRenderSwitch}) => {
   const [openPopup, setOpenPopup] = useState(false)
   const [events, setEvents] = useState([])
   const [eventDetails, setEventDetails] = useState({
@@ -77,18 +77,17 @@ const MyCalenderPage = () => {
     
     if (eventID) {
       const response = await API.updateEvent(eventID, eventObj)
-      // const responseJson = await response.json()
     } else {
       const response = await API.newEvent(eventObj)
-      // const responseJson = await response.json()
     }
+    flipNavRenderSwitch()
     loadEvents()
   }
 
   const deleteEvent = async (eventID) => {
     const response = await API.deleteEvent(eventID)
-    // const responseJson = await response.json()
     loadEvents()
+    flipNavRenderSwitch()
     setOpenPopup(false)
   }
 
