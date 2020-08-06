@@ -10,11 +10,11 @@ import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 
 export const Login = ({ history }) => {
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
     isMobile: false,
   });
-  const { email, password, isMobile } = formData;
+  const { username, password, isMobile } = formData;
   window.addEventListener(
     "resize",
     () => {
@@ -46,12 +46,12 @@ export const Login = ({ history }) => {
             </p>
             <Form className="mt-3" onSubmit={(e) => onSubmit(e)}>
               <FormGroup>
-                <Label>Email</Label>
+                <Label>Email / username</Label>
                 <Input
                   placeholder="Email"
-                  type="email"
-                  name="email"
-                  value={email}
+                  type="username"
+                  name="username"
+                  value={username}
                   onChange={(e) => handleChange(e)}
                 />
               </FormGroup>

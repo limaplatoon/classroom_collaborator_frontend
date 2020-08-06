@@ -5,6 +5,7 @@ import Propstypes from "prop-types";
 import "./auth.css";
 import Logo from "../../static/img/logoClassUp.png";
 import Log from "../../static/img/examDay.svg";
+import API from "../../API/AuthAPI";
 
 import { Image } from "react-bootstrap";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
@@ -34,7 +35,7 @@ export const Register = ({ history }) => {
       password: "",
     },
   });
-  const { email, password, firstname, lastname, isMobile } = formData;
+  const { email, password, firstname, username, isMobile } = formData;
   window.addEventListener(
     "resize",
     () => {
@@ -44,7 +45,7 @@ export const Register = ({ history }) => {
   );
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    //setFormData({ ...formData, [name]: value });
 
     e.preventDefault();
 
@@ -58,7 +59,7 @@ export const Register = ({ history }) => {
           setErrName("");
         }
         break;
-      case "lastname":
+      case "username":
         if (!value || value.length < 2) {
           setErrLast("Last Name must be 2 characters long!");
         } else {
@@ -81,16 +82,22 @@ export const Register = ({ history }) => {
         break;
     }
   };
+
   const onSubmit = async (e) => {
     e.preventDefault();
     const isEmpty =
       !formData.firstname ||
-      !formData.lastname ||
+      !formData.username ||
       !formData.email ||
       !formData.password;
 
     if (!errName && !errLast && !errEmail && !errPs && !isEmpty) {
-      history.push("/login");
+
+      const response = await API.register({ 'username': formData.username, 'password': formData.password })
+      const responseJson = await response.json()
+      localStorage.setItem('token', responseJson.token);
+
+      history.push("/");
     } else {
       setErrorsWarning(true);
     }
@@ -122,12 +129,12 @@ export const Register = ({ history }) => {
               </FormGroup>
 
               <FormGroup>
-                <Label>Last Name</Label>
+                <Label>Username</Label>
                 <Input
-                  placeholder="Last Name"
+                  placeholder="Username"
                   type="text"
-                  name="lastname"
-                  value={lastname}
+                  name="username"
+                  defaultValue={username}
                   onChange={(e) => handleChange(e)}
                   noValidate
                 />
@@ -152,7 +159,7 @@ export const Register = ({ history }) => {
                   placeholder="Password"
                   type="password"
                   name="password"
-                  value={password}
+                  defaultValue={password}
                   onChange={(e) => handleChange(e)}
                   noValidate
                 />
