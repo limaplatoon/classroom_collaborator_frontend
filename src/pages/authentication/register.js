@@ -9,11 +9,30 @@ import Log from "../../static/img/examDay.svg";
 import { Image } from "react-bootstrap";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
 
+const validEmailRegex = RegExp(
+  /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
+);
+
 export const Register = ({ history }) => {
+  const [errorsWarning, setErrorsWarning] = useState(false);
+
+  const [errName, setErrName] = useState("");
+  const [errLast, setErrLast] = useState("");
+  const [errEmail, setErrEmail] = useState("");
+  const [errPs, setErrPs] = useState("");
+
   const [formData, setFormData] = useState({
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
     isMobile: false,
+    errors: {
+      firstname: "",
+      lastname: "",
+      email: "",
+      password: "",
+    },
   });
   const { email, password, firstname, lastname, isMobile } = formData;
   window.addEventListener(
@@ -26,10 +45,55 @@ export const Register = ({ history }) => {
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
+
+    e.preventDefault();
+
+    setFormData({ ...formData, [name]: value });
+
+    switch (name) {
+      case "firstname":
+        if (!value || value.length < 2) {
+          setErrName("First Name must be 2 characters long!");
+        } else {
+          setErrName("");
+        }
+        break;
+      case "lastname":
+        if (!value || value.length < 2) {
+          setErrLast("Last Name must be 2 characters long!");
+        } else {
+          setErrLast("");
+        }
+        break;
+      case "email":
+        if (!validEmailRegex.test(value)) {
+          setErrEmail("Email is not valid!");
+        } else {
+          setErrEmail("");
+        }
+        break;
+      case "password":
+        if (!value || value.length < 2) {
+          setErrPs("Password must be 2 characters long!");
+        } else {
+          setErrPs("");
+        }
+        break;
+    }
   };
   const onSubmit = async (e) => {
     e.preventDefault();
-    history.push("/login");
+    const isEmpty =
+      !formData.firstname ||
+      !formData.lastname ||
+      !formData.email ||
+      !formData.password;
+
+    if (!errName && !errLast && !errEmail && !errPs && !isEmpty) {
+      history.push("/login");
+    } else {
+      setErrorsWarning(true);
+    }
   };
 
   return (
@@ -52,8 +116,11 @@ export const Register = ({ history }) => {
                   name="firstname"
                   value={firstname}
                   onChange={(e) => handleChange(e)}
+                  noValidate
                 />
+                {errName ? <span className="error">{errName}</span> : ""}
               </FormGroup>
+
               <FormGroup>
                 <Label>Last Name</Label>
                 <Input
@@ -62,8 +129,11 @@ export const Register = ({ history }) => {
                   name="lastname"
                   value={lastname}
                   onChange={(e) => handleChange(e)}
+                  noValidate
                 />
+                {errLast ? <span className="error">{errLast}</span> : ""}
               </FormGroup>
+
               <FormGroup>
                 <Label>Email</Label>
                 <Input
@@ -72,7 +142,9 @@ export const Register = ({ history }) => {
                   name="email"
                   value={email}
                   onChange={(e) => handleChange(e)}
+                  noValidate
                 />
+                {errEmail ? <span className="error">{errEmail}</span> : ""}
               </FormGroup>
               <FormGroup>
                 <Label>Password</Label>
@@ -82,11 +154,17 @@ export const Register = ({ history }) => {
                   name="password"
                   value={password}
                   onChange={(e) => handleChange(e)}
+                  noValidate
                 />
+                {errPs ? <span className="error">{errPs}</span> : ""}
               </FormGroup>
-              <Button className="btn btn-lg btn-primary btn-block">
+              <Button
+                className="btn btn-lg btn-primary btn-block"
+                style={{ border: errorsWarning ? "2px solid red" : null }}
+              >
                 Create Account
               </Button>
+
               <div className="text-center pt-3">
                 <Link to="/login">
                   <p> Already have an account? Sign in</p>
@@ -95,6 +173,7 @@ export const Register = ({ history }) => {
             </Form>
           </div>
         </Col>
+
         {!isMobile && (
           <Col sm="12" xxs="12" md="8" lg="8">
             <Image className="bgregister" src={Log}></Image>
@@ -105,4 +184,4 @@ export const Register = ({ history }) => {
   );
 };
 Register.propTypes = { history: Propstypes.object };
-export default withRouter(Register);
+export default Register;
