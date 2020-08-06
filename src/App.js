@@ -2,6 +2,7 @@ import React, {Fragment} from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/authentication/login";
 import Register from "./pages/authentication/register";
+import myReviewsPage from "./pages/MyReviewsPage"
 import { createBrowserHistory } from "history";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from './components/Navbar/Navbar'
@@ -19,6 +20,7 @@ const MainApp = () => {
         <Route exact path='/' component={HomePage} /> 
         <Route exact path='/my-calender' component={MyCalenderPage} /> 
         <Route exact path='/test' component={TestPage} /> 
+        <Route exact path='/myReviews' component={myReviewsPage} /> 
       </Container>
     </Fragment>
   )
