@@ -15,12 +15,14 @@ return (
 		<Form.Group>
 			<label>Select Your Class Below</label>
 		<Form.Control as="select" size="lg">
-        <option>Large select</option>
+        <option>A1234 Mr Professorson</option>
+        <option>B3652 dr. philosopher</option>
+        <option>K7532 ms. Smith</option>
         </Form.Control>
 		<br></br>
         <Form.Control size="lg" type="text" placeholder="Description" />
 		</Form.Group>
-  <Button></Button>
+  <Button>Submit</Button>
 		</form>
 
 )

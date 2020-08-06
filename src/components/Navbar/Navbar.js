@@ -21,7 +21,8 @@ const Navbar = () => {
         </BootstrapNavbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link as={Link} to='/my-calender'>My Calendar</Nav.Link>
-          <Nav.Link as={Link} to='/test'>My Classes</Nav.Link>
+          <Nav.Link as={Link} to='/myClasses'>My Classes</Nav.Link>
+          <Nav.Link as={Link} to='/myReviews'>My Reviews</Nav.Link>
         </Nav>
         <BootstrapNavbar.Brand href="#notifications">
           <Image className="navbarImage" src={bellIcon} />

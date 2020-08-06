@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from './components/Navbar/Navbar'
 import HomePage from "./pages/HomePage";
 import MyCalenderPage from './pages/MyCalenderPage';
-import TestPage from './pages/TestPage';
+import MyClassesPage from './pages/MyClassesPage';
 import Container from "react-bootstrap/Container";
 
 const history = createBrowserHistory();
@@ -19,7 +19,7 @@ const MainApp = () => {
       <Container>
         <Route exact path='/' component={HomePage} /> 
         <Route exact path='/my-calender' component={MyCalenderPage} /> 
-        <Route exact path='/test' component={TestPage} /> 
+        <Route exact path='/myClasses' component={MyClassesPage} /> 
         <Route exact path='/myReviews' component={myReviewsPage} /> 
       </Container>
     </Fragment>
