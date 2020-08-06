@@ -10,7 +10,7 @@ const MyReviewsPage = () => {
 //set the reviews for the current user in a list in state 	
 const [reviews, setreviews] = useState([{id:1,User:'Michael',class_section:'Section AB345',Description: "I loved this class",Professor: "Dr. Professorson"},{id:2,User:'John',class_section:'Section TQ765',Description: "I Hated this class",Professor: "Mr. Professordaughter"},{id:1,User:'Michael',class_section:'Section AB346',Description: "I loved this class",Professor: "Dr. Professorson"},{id:2,User:'John',class_section:'Section TQ766',Description: "I Hated this class",Professor: "Mr. Professordaughter"}])
 
-const [UserSections, UserSections] = useState([{}])
+const [UserSections, setUserSections] = useState([{}])
 
 
 //we'll fetch 
