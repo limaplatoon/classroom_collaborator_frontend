@@ -1,0 +1,13 @@
+.dropContainer {
+  width: 100%;
+  height: 100px;
+  display: grid;
+  place-items: center;
+  background-color: #e4f5ff;
+  border-radius: 5px;
+}
+
+.fileItem:hover {
+  cursor: pointer;
+  text-decoration: line-through;
+}
