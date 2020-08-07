@@ -18,12 +18,14 @@ const NoteForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    let formData = new FormData();
-    formData.append('student', 1)
-    formData.append('description', 'test')
-    formData.append('meeting', 1)
-    formData.append('file', fileList[0])
-    API.newNotes(formData)
+    fileList.map((file) => {
+      let formData = new FormData();
+      formData.append('student', 1)
+      formData.append('description', 'test')
+      formData.append('meeting', 1)
+      formData.append('file', file)
+      API.newNotes(formData)
+    })
   }
   
 

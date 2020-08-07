@@ -92,7 +92,7 @@ const MyCalenderPage = ({flipNavRenderSwitch}) => {
   }
 
   const eventStyleGetter = (event) => {
-    return {style: {backgroundColor: 'green'}}
+    return {style: {backgroundColor: 'black'}}
   }
 
   return (
