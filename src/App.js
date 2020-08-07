@@ -10,6 +10,7 @@ import MyCalenderPage from './pages/MyCalenderPage';
 import TestPage from './pages/TestPage';
 import Container from "react-bootstrap/Container";
 import ProtectedRoute from './pages/authentication/requiresAuth';
+import Profile from './pages/ProfilePage';
 
 
 
@@ -32,7 +33,7 @@ const App = () => {
       <Container>
         <ProtectedRoute exact path='/' component={HomePage} />
         <ProtectedRoute exact path='/my-calender' render={CalenderRenderer} />
-        <Route exact path='/test' component={TestPage} />
+        <ProtectedRoute exact path='/profile' component={Profile} />
       </Container>
     </Fragment>
   )

@@ -24,5 +24,6 @@ const login = async (userData) => {
 
 export default {
   register,
-  login
+  login,
+
 }
