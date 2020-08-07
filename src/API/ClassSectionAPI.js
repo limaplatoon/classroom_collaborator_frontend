@@ -11,7 +11,7 @@ const fetchCurrentUserClasses = () => {
 	  .then((response) => response.json())
   };
 
-// NOT YET CREATED Send enough Information in this section object to the api endpoint to create a new section and add the current user to it
+
 const addSection = (SectionObject) => {
 	return fetch(`${baseUrl}/api/sections/new/`, {
 	  headers: {
@@ -24,7 +24,7 @@ const addSection = (SectionObject) => {
   }
 
 
-//NOT YET CREATED this should be easy to create, just add the current user to the sectionid
+
 const AddUserToSection = (SectionID) => {
 	return fetch(`${baseUrl}/api/sections/${SectionID}/AddAStudent`, {
 	  headers: {

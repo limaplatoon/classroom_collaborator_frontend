@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron'
+import Container from 'react-bootstrap/Container'
 
 
-class SectionList extends Component {
+class MySectionList extends Component {
 
 	renderClasses = () => {
 		if(this.props.CurrentClasses){
@@ -11,20 +12,22 @@ class SectionList extends Component {
 
 <div className="jumbo" key={Class.id} >
 <Jumbotron>
+<Container>
 <p>
-	Here we will display each Classes' Information
-	maybe something like. And definitely hyperlink the class name <br></br>
+	 <br></br>
+	 See this Class Calendar! <br></br>
 	{Class.Section} <br></br>
 	{Class.Professor}  <br></br>
-
 </p>
+</Container> 
 </Jumbotron>
 </div> 
+
 			)
 		  })
    return(
 
-			<div className = "row">
+			<div>
 			  {classes}
 			</div>
 		  )
@@ -50,4 +53,4 @@ render(){
 }
 
 		
-export default SectionList
+export default MySectionList

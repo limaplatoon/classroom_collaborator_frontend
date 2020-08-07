@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron'
+import Container from 'react-bootstrap/Container'
 
 
 class ReviewList extends Component {
@@ -10,8 +11,9 @@ class ReviewList extends Component {
 			return(
 
 <div className="jumbo" key={Rev.id}>
-<Jumbotron>
-<div class="container">
+
+<Jumbotron >
+<Container>
 <p>
 
 	Here we will display each Review Information
@@ -23,8 +25,9 @@ class ReviewList extends Component {
 	{Rev.Professor} <br></br>
 
 </p>
-</div>
+</Container>
 </Jumbotron>
+<br></br>
 
 </div> 
 			)
