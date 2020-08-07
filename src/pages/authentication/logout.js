@@ -1,7 +1,7 @@
 import React from "react";
 
 const Logout = () => {
-  return <>LOGOUT</>;
+  localStorage.removeItem("token");
 };
 
 export default Logout;

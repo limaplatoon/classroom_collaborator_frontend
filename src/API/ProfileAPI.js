@@ -15,13 +15,17 @@ const createProfile = async (userData) => {
     headers: {
       //'Content-Type': 'application/json',
       'Authorization': `jwt ${localStorage.getItem('token')}`,
-
-
     },
     method: 'POST',
     body: JSON.stringify(userData)
   })
   return response
 }
+
+
+
+
+
+
 
 export default { getProfile, createProfile }

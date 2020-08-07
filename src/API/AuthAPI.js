@@ -1,7 +1,7 @@
 const baseUrl = 'http://localhost:8000'
 
 const register = async (userData) => {
-  let response = await fetch(`${baseUrl}/api/users/`, {
+  let response = await fetch(`${baseUrl}/api/register/`, {
     headers: {
       'Content-Type': 'application/json',
     },
@@ -22,8 +22,11 @@ const login = async (userData) => {
   return response
 }
 
+
+
 export default {
   register,
   login,
+
 
 }
