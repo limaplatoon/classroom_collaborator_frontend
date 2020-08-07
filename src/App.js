@@ -10,6 +10,7 @@ import HomePage from "./pages/HomePage";
 import MyCalenderPage from './pages/MyCalenderPage';
 import MyClassesPage from './pages/MyClassesPage';
 import JoinClassPage from './pages/JoinClassPage';
+import ProfessorReviewsPage from './pages/ProfessorReviewsPage';
 import Container from "react-bootstrap/Container";
 
 
@@ -35,6 +36,7 @@ const App = () => {
         <Route exact path='/my-calender' component={MyCalenderPage} /> 
         <Route exact path='/myClasses' component={MyClassesPage} /> 
         <Route exact path='/myReviews' component={myReviewsPage} /> 
+         <Route exact path='/Reviews/Professor/1' component={ProfessorReviewsPage}/>  
         <Route exact path='/JoinAClass' component={JoinClassPage} /> 
 
       </Container>

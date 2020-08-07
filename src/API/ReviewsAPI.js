@@ -1,8 +1,18 @@
-import baseUrl from '.EventsAPI';
+import baseUrl from './EventsAPI';
 
 const fetchReviews = () => {
 	return fetch (`${baseUrl}/api/current_user/reviews/all`, {headers: {
 	
+		Authorization: `JWT ${localStorage.getItem('token')}`,
+		'Content-Type': 'application/json',
+	}
+	})
+	  .then((response) => response.json())
+  };
+
+const fetchReviewsByProfessor = (ProfID) => {
+	return fetch (`${baseUrl}/reviews/${ProfID}`, 
+	{headers: {
 		Authorization: `JWT ${localStorage.getItem('token')}`,
 		'Content-Type': 'application/json',
 	}
@@ -26,5 +36,6 @@ const fetchReviews = () => {
 
   export default {
 	  fetchReviews,
-	  addReviews
+	  addReviews,
+	  fetchReviewsByProfessor
   }

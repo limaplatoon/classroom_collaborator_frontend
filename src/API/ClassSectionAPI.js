@@ -1,10 +1,21 @@
-import baseUrl from '.EventsAPI';
+import baseUrl from './EventsAPI';
 
 
 const fetchCurrentUserClasses = () => {
 	return fetch (`${baseUrl}/api/current_user/sections/all`, {headers: {
 	
 		Authorization: `JWT ${localStorage.getItem('token')}`,
+		'Content-Type': 'application/json',
+	}
+	})
+	  .then((response) => response.json())
+  };
+
+
+const fetchAllClasses = () => {
+	return fetch (`http://127.0.0.1:8000/api/sections/all`, {headers: {
+	
+		// Authorization: `JWT ${localStorage.getItem('token')}`,
 		'Content-Type': 'application/json',
 	}
 	})
@@ -33,4 +44,12 @@ const AddUserToSection = (SectionID) => {
 	  },
 	  method: 'Get',
 	})
+  }
+
+
+  export default {
+	  fetchCurrentUserClasses,
+	  addSection,
+	  AddUserToSection,
+	  fetchAllClasses
   }

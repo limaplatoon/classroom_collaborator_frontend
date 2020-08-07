@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import AvailableSectionList from '../components/Sections/AvailableSectionList'
+import ClassSectionAPI from '../API/ClassSectionAPI' 
+
 const JoinClassPage = () => {
 	
-const [AvailableClasses, setAvailableClasses] = useState([{'Section':'A1234','Professor':'Mr. Jorgenson'},{'Section':'B7689','Professor':'Mrs. Jorgensonmeister'},{'Section':'J9653','Professor':'Prof. Smith'}])
+const [AvailableClasses, setAvailableClasses] = useState([{Section:'Example Section',Professor:'Mr. Example'}])
 
 // useEffect(() => {
-	// ClassSectionAPI.fetchCurrentUserCasses().then(listOfclasses => {
-	// 	setreviews(listOfClasses);
-	// });
+// 	ClassSectionAPI.fetchAllClasses().then(ListOfClasses => {
+// 		setAvailableClasses(ListOfClasses);
+// 	})});
 
 
   return (

@@ -15,9 +15,11 @@ class AvailableSectionList extends Component {
 <Container>
 <p>
 Join This Class!
-	 <br></br>
-	{Class.Section} <br></br>
-	{Class.Professor}  <br></br>
+<br></br>
+	<a href="http://localhost:3000/" >{Class.Section}</a> 
+	
+<br></br>
+	<a href="Reviews by professor" >{Class.Professor}</a> <br></br>
 </p>
 </Container> 
 </Jumbotron>
