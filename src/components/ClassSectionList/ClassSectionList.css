@@ -1,0 +1,7 @@
+.classSectionItem {
+  cursor: pointer;
+}
+
+.classSectionItem:hover {
+  background-color: #e4f5ff
+}

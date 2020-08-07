@@ -1,0 +1,7 @@
+.sectionFormSelection {
+  display: flex;
+}
+
+.sectionSelectionItem {
+  margin-right: 10px;
+}

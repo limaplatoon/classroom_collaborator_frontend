@@ -7,6 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navbar from './components/Navbar/Navbar'
 import HomePage from "./pages/HomePage";
 import MyCalenderPage from './pages/MyCalenderPage';
+import MyClasses from "./pages/MyClasses";
 import TestPage from './pages/TestPage';
 import Container from "react-bootstrap/Container";
 
@@ -31,6 +32,7 @@ const App = () => {
       <Container>
         <Route exact path='/' component={HomePage} /> 
         <Route exact path='/my-calender' render={CalenderRenderer} /> 
+        <Route exact path='/my-classes' component={MyClasses} /> 
         <Route exact path='/test' component={TestPage} /> 
       </Container>
     </Fragment>

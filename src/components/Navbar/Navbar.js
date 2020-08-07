@@ -60,7 +60,7 @@ const Navbar = () => {
         </BootstrapNavbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link as={Link} to='/my-calender'>My Calendar</Nav.Link>
-          <Nav.Link as={Link} to='/test'>My Classes</Nav.Link>
+          <Nav.Link as={Link} to='/my-classes'>My Classes</Nav.Link>
         </Nav>
         <BootstrapNavbar.Brand style={{cursor: 'pointer'}}>
           <OverlayTrigger trigger="click" placement="bottom" overlay={popover} rootClose>
