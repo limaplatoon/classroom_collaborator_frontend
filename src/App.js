@@ -1,4 +1,4 @@
-import React, {Fragment, useState} from "react";
+import React, { Fragment, useState } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Login from "./pages/authentication/login";
 import Register from "./pages/authentication/register";
@@ -9,6 +9,8 @@ import HomePage from "./pages/HomePage";
 import MyCalenderPage from './pages/MyCalenderPage';
 import TestPage from './pages/TestPage';
 import Container from "react-bootstrap/Container";
+import ProtectedRoute from './pages/authentication/requiresAuth';
+import Profile from './pages/ProfilePage';
 
 
 
@@ -29,9 +31,9 @@ const App = () => {
     <Fragment>
       <Navbar />
       <Container>
-        <Route exact path='/' component={HomePage} /> 
-        <Route exact path='/my-calender' render={CalenderRenderer} /> 
-        <Route exact path='/test' component={TestPage} /> 
+        <ProtectedRoute exact path='/' component={HomePage} />
+        <ProtectedRoute exact path='/my-calender' render={CalenderRenderer} />
+        <ProtectedRoute exact path='/profile' component={Profile} />
       </Container>
     </Fragment>
   )
