@@ -33,7 +33,7 @@ const App = () => {
       <Container>
         <ProtectedRoute exact path='/' component={HomePage} />
         <ProtectedRoute exact path='/my-calender' render={CalenderRenderer} />
-        <ProtectedRoute exact path='/profile' component={Profile} />
+        {/*<Route exact path='/profile' component={Profile} />*/}
       </Container>
     </Fragment>
   )
