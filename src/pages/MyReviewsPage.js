@@ -10,20 +10,22 @@ import { useHistory } from "react-router-dom";
 
 const MyReviewsPage = () => {
 	
-const [redirect, setredirect] = useState(false)
+// REVIEWS are the user's previously created views
 const [reviews, setreviews] = useState()
+//USERSECTIONS exists so the dropdown menu will only allow you to create a New Review of a class you're enrolled in
 const [UserSections, setUserSections] = useState()
 
-
+//This will allow us to redirect after creating a new review
 let history = useHistory();
-//we'll fetch 
-//Unauthorized until we get the token working on the front end
+
+
+//Sets Reviews in state to the Reviews associated with the current user from the database
 useEffect(() => {
 ReviewsAPI.fetchReviews().then(ListOfReviews => {
-	console.log(ListOfReviews["reviews"])
 	setreviews(ListOfReviews["reviews"])})
 },[]);
 
+//Sets USERSECTIONS to Sections associated
 useEffect(() => {
 	ClassSectionAPI.fetchCurrentUserClasses().then(myClassSections => {
 		
@@ -44,7 +46,7 @@ const HandleSubmitReview = evt => {
 		}
 		console.log(reviewObject)
 
-	ReviewsAPI.addReviews(reviewObject).then(console.table).then(history.push('/myReviews')).then(setredirect(true))
+	ReviewsAPI.addReviews(reviewObject).then(console.table).then(history.push('/myReviews'))
 	
 
 		

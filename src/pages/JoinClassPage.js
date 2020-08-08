@@ -5,7 +5,7 @@ import { Redirect } from 'react-router';
 
 const JoinClassPage = () => {
 	
-const [AvailableClasses, setAvailableClasses] = useState([{Section:'Example Section',Professor:'Mr. Example'}])
+const [AvailableClasses, setAvailableClasses] = useState([{Section:'Turn On The Back End',Professor:'You idiot'}])
 
 //get all of the class sections that are available. 
 useEffect(() => {
@@ -26,7 +26,7 @@ const Enroll = (SectionID) => {
 
   return (
     <div>
-      <h1>this is The Page where we will be able to view available class sections to join and create new classes</h1>
+      <h1>Add The ability to create a new class section</h1>
 	  Yeah, add a search function similar to news site onchange
 	  
 	  {/* <h2>I have created an api endpoint to add a user to a class section on the back end</h2>

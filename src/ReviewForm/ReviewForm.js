@@ -6,7 +6,7 @@ import { Redirect } from 'react-router';
 class ReviewForm extends Component {
 constructor(props) {
   super(props);
-//   this.state = {Redirect:false}
+
 }
 
    
