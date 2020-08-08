@@ -1,13 +1,17 @@
-import React, { useState } from 'react'
-import MySectionList from '../components/Sections/MySectionList'
+import React, { useState, useEffect } from 'react'
+import MySectionList from '../components/Sections/MySectionList';
+import ClassSectionAPI from '../API/ClassSectionAPI';
+
+
+
 const MyClassesPage = () => {
 	
-const [CurrentClasses, setCurrentClasses] = useState([{'Section':'A1234','Professor':'Mr. Jorgenson'},{'Section':'B7689','Professor':'Mrs. Jorgensonmeister'}])
+const [CurrentClasses, setCurrentClasses] = useState()
 
-// useEffect(() => {
-	// ClassSectionAPI.fetchCurrentUserCasses().then(listOfclasses => {
-	// 	setreviews(listOfClasses);
-	// });
+useEffect(() => {
+	ClassSectionAPI.fetchCurrentUserClasses().then(ClassesImIn => {
+		setCurrentClasses(ClassesImIn["sections"]);
+	})},[]);
 
 
   return (

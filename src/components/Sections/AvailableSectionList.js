@@ -5,16 +5,18 @@ import Container from 'react-bootstrap/Container'
 
 class AvailableSectionList extends Component {
 
+
 	renderClasses = () => {
+		console.log(this.props.AvailableClasses)
 		if(this.props.AvailableClasses){
-		  const classes= this.props.AvailableClasses.map(Class => {
+		  const classes=this.props.AvailableClasses.map(Class => {
 			return(
 
 <div className="jumbo" key={Class.id} >
 <Jumbotron>
 <Container>
 <p>
-Join This Class!
+<button onClick= {() => this.props.enroll( Class.ID )}    >Join This Class!</button>
 <br></br>
 	<a href="http://localhost:3000/" >{Class.Section}</a> 
 	

@@ -5,42 +5,51 @@ import ReviewsAPI from '../API/ReviewsAPI'
 import ClassSectionAPI from '../API/ClassSectionAPI' 
 import ReviewList from '../components/Reviews/ReviewsList'
 import ReviewForm from '../ReviewForm/ReviewForm'
+import { useHistory } from "react-router-dom";
+
 
 const MyReviewsPage = () => {
-
-//This is used for the User's already created reviews 	
-const [reviews, setreviews] = useState([{id:1,User:'Michael',class_section:'Section AB345',Description: "I loved this class",Professor: "Dr. Professorson"},{id:2,User:'John',class_section:'Section TQ765',Description: "I Hated this class",Professor: "Mr. Professordaughter"},{id:1,User:'Michael',class_section:'Section AB346',Description: "I loved this class",Professor: "Dr. Professorson"},{id:2,User:'John',class_section:'Section TQ766',Description: "I Hated this class",Professor: "Mr. Professordaughter"}])
-
-//Default Data currently
-const [UserSections, setUserSections] = useState([{Section:'A1234',Professor:'Mr. Jorgenson'},{Section:'B7689',Professor:'Mrs. Jorgensonmeister'}])
+	
+const [redirect, setredirect] = useState(false)
+const [reviews, setreviews] = useState()
+const [UserSections, setUserSections] = useState()
 
 
+let history = useHistory();
 //we'll fetch 
 //Unauthorized until we get the token working on the front end
 useEffect(() => {
 ReviewsAPI.fetchReviews().then(ListOfReviews => {
-	console.log("list Of Reviews Returned")
-	setreviews(ListOfReviews)})
-});
+	console.log(ListOfReviews["reviews"])
+	setreviews(ListOfReviews["reviews"])})
+},[]);
 
 useEffect(() => {
 	ClassSectionAPI.fetchCurrentUserClasses().then(myClassSections => {
-		console.log("checking for Class Sections")
-	setUserSections(myClassSections)
-	})
 		
-	// 	setreviews(listOfSections);
-	// });
-});
-// useEffect(() => {
-	// ClassSectionAPI.fetchCurrentUserCLasses().then(listOfclasses => {
-	// 	setreviews(listOfClasses);
-	// });
+	setUserSections(myClassSections["sections"])
+	})
+},[]);
 
 
+const HandleSubmitReview = evt => {
+	evt.preventDefault();
+	console.log('Submitted');
+	const SectionID = (evt.target[0].value);
+	
+	const Description = (evt.target[1].value);
+	const reviewObject = {
+			sectionID: SectionID,
+			description: Description,
+		}
+		console.log(reviewObject)
 
+	ReviewsAPI.addReviews(reviewObject).then(console.table).then(history.push('/myReviews')).then(setredirect(true))
+	
 
+		
 
+}
 
 
 
@@ -52,7 +61,7 @@ useEffect(() => {
 		<h1>Leave a new Review for one of your classes here
         </h1>
 		<br></br>
-		<ReviewForm UserSections={UserSections} />
+		<ReviewForm HandleSubmitReview= {HandleSubmitReview} UserSections={UserSections} />
 
 <h2> Your Past Reviews! </h2>
         <ReviewList Reviews={reviews} />

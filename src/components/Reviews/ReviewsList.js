@@ -5,6 +5,9 @@ import Container from 'react-bootstrap/Container'
 
 class ReviewList extends Component {
 
+
+
+
 	renderReviews = () => {
 		if(this.props.Reviews){
 		  const review= this.props.Reviews.map(Rev => {
@@ -15,14 +18,12 @@ class ReviewList extends Component {
 <Jumbotron >
 <Container>
 <p>
+	<a href="Link to reviews by professor">{Rev.Professor}</a> <br></br>
 
-	Here we will display each Review Information
-	maybe something like <br></br>
-	{Rev.id} <br></br>
-	{Rev.class_section}  <br></br>
-	{Rev.User} <br></br>
-	{Rev.Description} <br></br>
-	{Rev.Professor} <br></br>
+	{Rev.section}  <br></br>
+	{Rev.student} <br></br>
+	{Rev.description} <br></br>
+
 
 </p>
 </Container>

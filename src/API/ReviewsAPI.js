@@ -1,7 +1,7 @@
 import baseUrl from './EventsAPI';
 
 const fetchReviews = () => {
-	return fetch (`${baseUrl}/api/current_user/reviews/all`, {headers: {
+	return fetch (`http://127.0.0.1:8000/api/current_user/reviews/all`, {headers: {
 	
 		Authorization: `JWT ${localStorage.getItem('token')}`,
 		'Content-Type': 'application/json',
@@ -11,7 +11,7 @@ const fetchReviews = () => {
   };
 
 const fetchReviewsByProfessor = (ProfID) => {
-	return fetch (`${baseUrl}/reviews/${ProfID}`, 
+	return fetch (`http://127.0.0.1:8000/reviews/${ProfID}`, 
 	{headers: {
 		Authorization: `JWT ${localStorage.getItem('token')}`,
 		'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ const fetchReviewsByProfessor = (ProfID) => {
 
 // Once Tokens are set up I can set up the url endpoint to create a new review.
   const addReviews = (ReviewObject) => {
-	return fetch(`${baseUrl}/api/reviews/reviews/all`, {
+	return fetch(`http://127.0.0.1:8000/api/current_user/reviews/new`, {
 	  headers: {
 		Authorization: `JWT ${localStorage.getItem('token')}`,
 		'Content-Type': 'application/json'

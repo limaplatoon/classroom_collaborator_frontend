@@ -9,7 +9,7 @@ import ReviewForm from '../ReviewForm/ReviewForm'
 const ProfessorReviewsPage = () => {
 
 //This is used for the User's already created reviews 	
-const [reviews, setreviews] = useState([{id:1,User:'Michael',class_section:'Section AB345',Description: "Example Review",Professor: "Dr. Exampleson"}])
+const [reviews, setreviews] = useState([{id:1,User:'Michael',class_section:'Biology AB345',Description: "Example Review",Professor: "Dr. Exampleson"}])
 
 
 //We need to pass in the ProfID from the Route URL!
