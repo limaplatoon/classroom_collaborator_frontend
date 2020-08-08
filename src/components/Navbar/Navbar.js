@@ -77,13 +77,17 @@ const Navbar = () => {
           <Image className="navbarImage" src={blankAvatar} roundedCircle />
         </BootstrapNavbar.Brand> */}
         <Nav className="mr-auto">
-          <Nav.Link as={Link} to="/my-calender" class="color">
-            MY CALENDAR
-            <Image className="navbarImage" src={calendar} />
+          <Nav.Link as={Link} to="/my-calender">
+            My Calendar
           </Nav.Link>
-          <Nav.Link as={Link} to="/test" class="color">
-            MY CLASSES
-            <Image className="navbarImage" src={classes} />
+          <Nav.Link as={Link} to="/myClasses">
+            My Classes
+          </Nav.Link>
+          <Nav.Link as={Link} to="/myReviews">
+            My Reviews
+          </Nav.Link>
+          <Nav.Link as={Link} to="/JoinAClass">
+            Join a Class
           </Nav.Link>
         </Nav>
         <BootstrapNavbar.Brand style={{ cursor: "pointer" }}>
