@@ -43,7 +43,7 @@ const HomePage = () => {
     const data = new FormData();
     data.append("first_name", formData.first_name);
     data.append("last_name", formData.first_name);
-    data.append("college", "formData.first_name");
+    data.append("college", formData.college);
     data.append("username", decToken.user_id);
     data.append("profile_picture", formData.profile_picture);
 
@@ -84,8 +84,18 @@ const HomePage = () => {
         name="last_name"
         value={formData.last_name}
         onChange={(e) => handleChange(e)}
-
       />
+
+      <label>College</label>
+      <input
+        placeholder="College"
+        type="text"
+        name="college"
+        value={formData.college}
+        onChange={(e) => handleChange(e)}
+      />
+
+
       <label for="profile_picture">Choose Image to Upload</label>
       <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} />
       <button type="submit">Upload Image</button>
