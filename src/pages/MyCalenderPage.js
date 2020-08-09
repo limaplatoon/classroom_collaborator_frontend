@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useContext} from 'react'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import Popup from 'reactjs-popup'
 import API from '../API/EventsAPI'
-
+import { NavBarContext } from "../context/NavBarContext"
 
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import EventForm from '../components/EventForm/EventForm'
@@ -16,6 +16,8 @@ const setDateTime = (date, seconds) => {
 }
 
 const MyCalenderPage = ({flipNavRenderSwitch}) => {
+  const {loadNotifications} = useContext(NavBarContext)
+
   const [openPopup, setOpenPopup] = useState(false)
   const [events, setEvents] = useState([])
   const [eventDetails, setEventDetails] = useState({
@@ -72,7 +74,7 @@ const MyCalenderPage = ({flipNavRenderSwitch}) => {
       description: description,
       location: location,
       viewable: viewable,
-      userID: 1,
+      // userID: 1,
     }
     
     if (eventID) {
@@ -80,14 +82,14 @@ const MyCalenderPage = ({flipNavRenderSwitch}) => {
     } else {
       const response = await API.newEvent(eventObj)
     }
-    flipNavRenderSwitch()
+    loadNotifications()
     loadEvents()
   }
 
   const deleteEvent = async (eventID) => {
     const response = await API.deleteEvent(eventID)
     loadEvents()
-    flipNavRenderSwitch()
+    loadNotifications()
     setOpenPopup(false)
   }
 
