@@ -11,7 +11,7 @@ const fetchReviews = () => {
   };
 
 const fetchReviewsByProfessor = (ProfID) => {
-	return fetch (`http://127.0.0.1:8000/reviews/${ProfID}`, 
+	return fetch (`http://127.0.0.1:8000/api/reviews/${ProfID}`, 
 	{headers: {
 		Authorization: `JWT ${localStorage.getItem('token')}`,
 		'Content-Type': 'application/json',
@@ -32,10 +32,22 @@ const fetchReviewsByProfessor = (ProfID) => {
 	})
   }
 
+  const fetchProfessor = (ProfID) => {
+	  	return fetch (`http://127.0.0.1:8000/api/${ProfID}`, 
+	{headers: {
+		Authorization: `JWT ${localStorage.getItem('token')}`,
+		'Content-Type': 'application/json',
+	}
+	})
+	  .then((response) => response.json())
+  };
+  
+
 
 
   export default {
 	  fetchReviews,
 	  addReviews,
-	  fetchReviewsByProfessor
+	  fetchReviewsByProfessor,
+	  fetchProfessor
   }

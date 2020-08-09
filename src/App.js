@@ -29,11 +29,12 @@ const App = () => {
 
       <NavBarContextProvider>
       <Navbar />
+
         <Container>
           <Route exact path='/' component={HomePage} /> 
           <Route exact path='/myClasses' component={MyClassesPage} /> 
           <Route exact path='/myReviews' component={myReviewsPage} /> 
-          <Route exact path='/Reviews/Professor/1' component={ProfessorReviewsPage}/>  
+          <Route exact path='/Reviews/Professor/:ProfID' component={ProfessorReviewsPage}/>
           <Route exact path='/JoinAClass' component={JoinClassPage} /> 
           <Route exact path='/my-calender' component={MyCalenderPage} />
           <Route exact path='/profile' component={Profile} />

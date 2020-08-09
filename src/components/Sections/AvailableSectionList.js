@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Container from 'react-bootstrap/Container'
+import { Link } from 'react-router-dom'
 
 
 class AvailableSectionList extends Component {
@@ -18,10 +19,11 @@ class AvailableSectionList extends Component {
 <p>
 <button onClick= {() => this.props.enroll( Class.ID )}    >Join This Class!</button>
 <br></br>
-	<a href="http://localhost:3000/" >{Class.Section}</a> 
+	<Link to="http://localhost:3000/" >{Class.Section}</Link> 
 	
 <br></br>
-	<a href="Reviews by professor" >{Class.Professor}</a> <br></br>
+	<Link to={ `/Reviews/Professor/${Class.ProfID}` }>{Class.Professor}</Link> 
+	<br></br>
 </p>
 </Container> 
 </Jumbotron>
