@@ -1,5 +1,5 @@
 const baseUrl = 'http://localhost:8000'
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImpvaG4iLCJleHAiOjE1OTc0MzE0NTIsImVtYWlsIjoiIn0.ST4QhUmUOKgumwo7LIUun-QR37z4Rk3ZPYuzseFeUBI'
+const token = localStorage.getItem('token')
 
 
 const getMySections = async () => {
@@ -10,7 +10,8 @@ const getMySections = async () => {
       headers: headers,
     }
 
-  let response = await fetch(`${baseUrl}/api/current_user/sections/all`, requestOptions)
+  // let response = await fetch(`${baseUrl}/api/current_user/sections/all`, requestOptions)
+  let response = await fetch(`${baseUrl}/api/sections/mine`, requestOptions)
   return response
   }
 
@@ -25,11 +26,6 @@ const getSections = async () => {
 }
 
 const newSection = async (formData) => {
-  // console.log('this part is working')
-  // for (let pair of formData.entries()) {
-  //   console.log(pair[0]+ ', ' + pair[1])
-  // }
-
   const headers = new Headers()
   headers.append('Authorization', `jwt ${token}`)
   const requestOptions = {
@@ -42,23 +38,34 @@ const newSection = async (formData) => {
   return response
 }
 
+const addSectionStudents = async (sectionID) => {
+  const headers = new Headers()
+  headers.append('Authorization', `jwt ${token}`)
+  const requestOptions = {
+      method: 'PATCH',
+      headers: headers,
+    }
 
-// const updateSections = async (alertID) => {
-//   let response = await fetch(`${baseUrl}/api/alerts/${alertID}`, {
-//     headers: {
-//       'Content-Type': 'application/json',
-//     },
-//     method: 'PATCH',
-//     body: JSON.stringify({
-//       id: alertID,
-//       read_status: true,
-//     })
-//   })
-//   return response
-// }
+  let response = await fetch(`${baseUrl}/api/sections/${sectionID}/students`, requestOptions)
+  return response
+}
+
+const removeSectionStudents = async (sectionID) => {
+  const headers = new Headers()
+  headers.append('Authorization', `jwt ${token}`)
+  const requestOptions = {
+      method: 'DELETE',
+      headers: headers,
+    }
+
+  let response = await fetch(`${baseUrl}/api/sections/${sectionID}/students`, requestOptions)
+  return response
+}
 
 export default {
   getMySections,
   getSections,
   newSection,
+  addSectionStudents,
+  removeSectionStudents,
 }

@@ -8,7 +8,7 @@ import ProfessorAPI from '../../API/ProfessorAPI'
 import SectionAPI from '../../API/SectionAPI'
 
 
-const ClassSectionForm = ({addSection}) => {
+const ClassSectionForm = ({addSection, closePopup}) => {
 
   const [professorList, setProfessorList] = useState([])
   const [sectionList, setSectionList] = useState([])
@@ -69,29 +69,17 @@ const ClassSectionForm = ({addSection}) => {
   const handleSubmit = async (event) => {
     event.preventDefault()
     let sectionID = undefined
-    // const formData = new FormData()
     if (sectionIndex > -1) {
-      // add user to class
-      sectionID = sectionList[sectionIndex]
-      // console.log('add user')
+      sectionID = sectionList[sectionIndex].id
     }
     if (sectionIndex === -1) {
       if (professorIndex > -1 && sectionName) {
         const professorID = professorList[professorIndex].id
-        // formData.append('Professor', professorID)
-        //create section
-        sectionID = submitNewSection(professorID)
-        // formData.append('Section', sectionID)
-        // add user to class
+        sectionID = await submitNewSection(professorID)
       }
       if (professorIndex === -1 && sectionName) {
-        //create prof
         const professorID = await submitNewProfessor()
-        // formData.append('Professor', professorID)
-        //create section
-        sectionID = submitNewSection(professorID)
-        // formData.append('Section', submitNewSection(professorID))
-        //add user to class
+        sectionID = await submitNewSection(professorID)
       }
     }
     sectionID ? addSection(sectionID) : setFormError(true)
@@ -107,7 +95,7 @@ const ClassSectionForm = ({addSection}) => {
               <option disabled selected value>-- select an option --</option>
               <option key='99'>- new section -</option>
               {sectionList.map((section, i) => 
-                <option key={i}>{section.Section} - {section.Professor}</option>
+                <option key={i}>{section.Section} - {section.professor_first_name} {section.professor_last_name}</option>
                 )}
             </Form.Control>
           </Col>
@@ -155,7 +143,10 @@ const ClassSectionForm = ({addSection}) => {
         }
         <Form.Group as={Row}>
           <Col sm={{ span: 10, offset: 2 }}>
-            <Button type="submit">submit</Button>
+            <div className='sectionFormButtons'>
+              <Button onClick={closePopup}>Cancel</Button>
+              <Button type="submit">Add</Button>
+            </div>
           </Col>
         </Form.Group>
 

@@ -1,5 +1,5 @@
 const baseUrl = 'http://localhost:8000'
-const token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoxLCJ1c2VybmFtZSI6ImpvaG4iLCJleHAiOjE1OTc0MzE0NTIsImVtYWlsIjoiIn0.ST4QhUmUOKgumwo7LIUun-QR37z4Rk3ZPYuzseFeUBI'
+const token = localStorage.getItem('token')
 
 const getProfessors = async () => {
   let response = await fetch(`${baseUrl}/api/professors`, {

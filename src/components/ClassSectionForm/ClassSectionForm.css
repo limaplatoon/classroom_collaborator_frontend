@@ -5,3 +5,12 @@
 .sectionSelectionItem {
   margin-right: 10px;
 }
+
+.sectionFormButtons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.sectionFormButtons button {
+  margin-left: 5px;
+}

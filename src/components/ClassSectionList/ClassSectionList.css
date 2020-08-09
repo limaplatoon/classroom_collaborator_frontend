@@ -1,7 +1,12 @@
-.classSectionItem {
-  cursor: pointer;
+.classSectionItemMain {
+  /* cursor: pointer; */
 }
 
-.classSectionItem:hover {
-  background-color: #e4f5ff
+.classSectionItemMain:hover {
+  /* background-color: #e4f5ff */
+}
+
+.classSectionItem {
+  display: flex;
+  justify-content: space-between;
 }
