@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
 import Login from "./pages/authentication/login";
 import Register from "./pages/authentication/register";
 import myReviewsPage from "./pages/MyReviewsPage"
@@ -30,18 +30,20 @@ const App = () => {
     return <MyCalenderPage flipNavRenderSwitch={flipNavRenderSwitch} />
   }
 
+  console.log(localStorage.token)
   const DefaultContainer = () => (
     <Fragment>
+      {!localStorage.getItem('token') && <Redirect to={{ pathname: '/login' }} />}
+
       <Navbar />
       <Container>
         <Route exact path='/' component={HomePage} /> 
         <Route exact path='/myClasses' component={MyClassesPage} /> 
         <Route exact path='/myReviews' component={myReviewsPage} /> 
-         <Route exact path='/Reviews/Professor/1' component={ProfessorReviewsPage}/>  
+        <Route exact path='/Reviews/Professor/1' component={ProfessorReviewsPage}/>  
         <Route exact path='/JoinAClass' component={JoinClassPage} /> 
         <Route exact path='/my-calender' render={CalenderRenderer} />
         <Route exact path='/profile' component={Profile} />
-
       </Container>
     </Fragment>
   )

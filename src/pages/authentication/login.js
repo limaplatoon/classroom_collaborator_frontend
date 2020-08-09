@@ -31,11 +31,11 @@ export const Login = ({ history }) => {
     e.preventDefault();
     const response = await API.login({ 'username': formData.username, 'password': formData.password })
     const responseJson = await response.json()
-    localStorage.setItem('token', responseJson.token);
+    await localStorage.setItem('token', responseJson.token);
 
 
 
-    history.push("../");
+    history.push("/");
   };
 
   return (

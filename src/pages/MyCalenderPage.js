@@ -72,7 +72,7 @@ const MyCalenderPage = ({flipNavRenderSwitch}) => {
       description: description,
       location: location,
       viewable: viewable,
-      userID: 1,
+      // userID: 1,
     }
     
     if (eventID) {

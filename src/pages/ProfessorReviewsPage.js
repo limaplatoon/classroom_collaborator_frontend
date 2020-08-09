@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 // import Jumbotron from 'react-bootstrap/Jumbotron'
-import Form from 'react-bootstrap/form'
+import Form from 'react-bootstrap/Form'
 import ReviewsAPI from '../API/ReviewsAPI' 
 import ClassSectionAPI from '../API/ClassSectionAPI' 
 import ReviewList from '../components/Reviews/ReviewsList'
