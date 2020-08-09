@@ -21,7 +21,8 @@ class AvailableSectionList extends Component {
 	<a href="http://localhost:3000/" >{Class.Section}</a> 
 	
 <br></br>
-	<a href="Reviews by professor" >{Class.Professor}</a> <br></br>
+	<a href={ `/Reviews/Professor/${Class.ProfID}` }>{Class.Professor}</a> 
+	<br></br>
 </p>
 </Container> 
 </Jumbotron>

@@ -18,7 +18,7 @@ class ReviewList extends Component {
 <Jumbotron >
 <Container>
 <p>
-	<a href="Link to reviews by professor">{Rev.Professor}</a> <br></br>
+	<a href={ `/Reviews/Professor/${Rev.ProfID}` }>{Rev.Professor}</a> <br></br>
 
 	{Rev.section}  <br></br>
 	{Rev.student} <br></br>
