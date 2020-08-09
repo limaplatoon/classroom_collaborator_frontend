@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Container from 'react-bootstrap/Container'
+import { Link } from 'react-router-dom'
 
 
 class ReviewList extends Component {
@@ -18,7 +19,7 @@ class ReviewList extends Component {
 <Jumbotron >
 <Container>
 <p>
-	<a href={ `/Reviews/Professor/${Rev.ProfID}` }>{Rev.Professor}</a> <br></br>
+	<Link to={ `/Reviews/Professor/${Rev.ProfID}` }>{Rev.Professor}</Link> <br></br>
 
 	{Rev.section}  <br></br>
 	{Rev.student} <br></br>
