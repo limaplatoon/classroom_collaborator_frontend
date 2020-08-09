@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react'
-import {Link} from 'react-router-dom'
-import {Navbar as BootstrapNavbar} from 'react-bootstrap'
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { Navbar as BootstrapNavbar } from 'react-bootstrap'
 import Nav from 'react-bootstrap/Nav'
 import Image from 'react-bootstrap/Image'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
@@ -18,13 +18,13 @@ import alertIcon from "../../static/img/bell_alert.svg";
 const Navbar = () => {
   const [alerts, setAlerts] = useState([])
   const now = new Date()
-  
+
   const notificationTimer = (alert) => {
-    let timeDelta = (new Date(alert.event_time) - now)/(1000*60)
+    let timeDelta = (new Date(alert.event_time) - now) / (1000 * 60)
     setTimeout(() => setAlerts(state => [...state, alert]), (timeDelta - 60) * 1000)
     // setTimeout(() => setAlerts(state => [...state, alert]), (2.5 * alert.id) * 1000)
   }
-  
+
   const loadNotifications = async () => {
     setAlerts([])
     const response = await NotificationsAPI.getNotifications()
@@ -36,16 +36,16 @@ const Navbar = () => {
     const response = await NotificationsAPI.updateNotifications(alertID)
     setAlerts([...alerts].filter(alert => alert.id !== alertID))
   }
-  
-  
+
+
   useEffect(() => {
     loadNotifications()
   }, [])
-  
+
   const popover = (
     <Popover id="popover-basic">
       <Popover.Content>
-        {(alerts.length > 0) ? <Notifications alerts={alerts} handleItemClick={handleNotificationItemClick}/> : <span>no notifications</span>}
+        {(alerts.length > 0) ? <Notifications alerts={alerts} handleItemClick={handleNotificationItemClick} /> : <span>no notifications</span>}
       </Popover.Content>
     </Popover>
   );
@@ -60,17 +60,19 @@ const Navbar = () => {
         </BootstrapNavbar.Brand>
         <Nav className="mr-auto">
           <Nav.Link as={Link} to='/my-calender'>My Calendar</Nav.Link>
-          <Nav.Link as={Link} to='/test'>My Classes</Nav.Link>
+          <Nav.Link as={Link} to='/myClasses'>My Classes</Nav.Link>
+          <Nav.Link as={Link} to='/myReviews'>My Reviews</Nav.Link>
+          <Nav.Link as={Link} to='/JoinAClass'>Join a Class</Nav.Link>
         </Nav>
-        <BootstrapNavbar.Brand style={{cursor: 'pointer'}}>
+        <BootstrapNavbar.Brand style={{ cursor: 'pointer' }}>
           <OverlayTrigger trigger="click" placement="bottom" overlay={popover} rootClose>
             <Image className="navbarImage" src={(alerts.length > 0) ? alertIcon : bellIcon} />
           </OverlayTrigger>
         </BootstrapNavbar.Brand>
-        <BootstrapNavbar.Brand href="#messages">
+        <BootstrapNavbar.Brand href="messages">
           <Image className="navbarImage" src={mailIcon} />
         </BootstrapNavbar.Brand>
-        <BootstrapNavbar.Brand href="#profile">
+        <BootstrapNavbar.Brand href="profile">
           <Image className="navbarImage" src={blankAvatar} roundedCircle />
         </BootstrapNavbar.Brand>
       </BootstrapNavbar>
