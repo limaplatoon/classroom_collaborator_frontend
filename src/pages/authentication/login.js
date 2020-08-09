@@ -32,9 +32,6 @@ export const Login = ({ history }) => {
     const response = await API.login({ 'username': formData.username, 'password': formData.password })
     const responseJson = await response.json()
     await localStorage.setItem('token', responseJson.token);
-
-
-
     history.push("/");
   };
 
