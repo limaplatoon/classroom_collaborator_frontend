@@ -48,7 +48,6 @@ const Enroll = (SectionID) => {
       <h1>If your class section can't be found below, create a new one! </h1>
 	 <SectionForm HandleSubmitNewSection={HandleSubmitNewSection}/>
 	  <h2> Join One of the Below Classes! </h2>
-	  <h4>Yeah, add a search function similar to news site onchange</h4>
         <AvailableSectionList AvailableClasses={AvailableClasses} enroll = {Enroll}/>
     </div>
   )
