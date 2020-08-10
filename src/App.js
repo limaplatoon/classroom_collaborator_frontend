@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Login from "./pages/authentication/login";
 import Register from "./pages/authentication/register";
 import myReviewsPage from "./pages/MyReviewsPage"
@@ -14,6 +14,7 @@ import ProfessorReviewsPage from './pages/ProfessorReviewsPage';
 import Container from "react-bootstrap/Container";
 import ProtectedRoute from './pages/authentication/requiresAuth';
 import Profile from './pages/ProfilePage';
+import Logout from "./pages/authentication/logout";
 import NavBarContextProvider from "./context/NavBarContext";
 
 
@@ -28,14 +29,14 @@ const App = () => {
       {!localStorage.getItem('token') && <Redirect to={{ pathname: '/login' }} />}
 
       <NavBarContextProvider>
-      <Navbar />
+        <Navbar />
 
         <Container>
-          <Route exact path='/' component={HomePage} /> 
-          <Route exact path='/myClasses' component={MyClassesPage} /> 
-          <Route exact path='/myReviews' component={myReviewsPage} /> 
-          <Route exact path='/Reviews/Professor/:ProfID' component={ProfessorReviewsPage}/>
-          <Route exact path='/JoinAClass' component={JoinClassPage} /> 
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/myClasses' component={MyClassesPage} />
+          <Route exact path='/myReviews' component={myReviewsPage} />
+          <Route exact path='/Reviews/Professor/:ProfID' component={ProfessorReviewsPage} />
+          <Route exact path='/JoinAClass' component={JoinClassPage} />
           <Route exact path='/my-calender' component={MyCalenderPage} />
           <Route exact path='/profile' component={Profile} />
         </Container>
@@ -43,11 +44,14 @@ const App = () => {
     </Fragment>
   )
 
+
+
   return (
     <div>
       <Router history={history}>
         <Switch>
           <Route exact path="/login" component={Login} />
+          <Route exact path="/logout" component={Logout} />
           <Route exact path="/register" component={Register} />
           <Route component={DefaultContainer} />
         </Switch>
