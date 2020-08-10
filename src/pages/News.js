@@ -27,6 +27,7 @@ const News = () => {
         <ListGroupItem tag="a" target="_blank" href={n.link}>
           <ListGroupItemHeading>{n.title}</ListGroupItemHeading>
           <ListGroupItemText>
+            {n.snippet}
           </ListGroupItemText>
         </ListGroupItem>
       ))}

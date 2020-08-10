@@ -107,7 +107,7 @@ const HomePage = () => {
                   <ListGroupItem>Last Name: {profile.last_name} </ListGroupItem>
                   <ListGroupItem>College: {profile.college}</ListGroupItem>
                 </ListGroup>
-                <button onClick={toggle}>edit Profile</button>
+                <Button color="success" onClick={toggle}>Edit</Button>
               </Card>
             </div>
 
@@ -139,11 +139,11 @@ const HomePage = () => {
                   />
                   <label for="profile_picture">Choose Image to Upload</label>
                   <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} />
-                  <Button color="secondary" type="submit" >Cancel</Button>
+                  <Button color="secondary" type="submit" >Submit</Button>
                 </form>
               </ModalBody>
               <ModalFooter>
-                <Button color="secondary" onClick={toggle}>Cancel</Button>
+                <Button color="secondary" onClick={toggle}>Back-To-Page</Button>
               </ModalFooter>
             </Modal>
 
