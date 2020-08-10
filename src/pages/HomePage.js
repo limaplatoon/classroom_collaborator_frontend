@@ -91,7 +91,7 @@ const HomePage = () => {
       <br></br>
       <div className="row new">
         {Object.keys(profile).length > 0 ?
-          <div className="col-3">
+          <div className="col-4">
 
             <div>
               <Card className="studentCard" xs={6} md={4} style={{ width: '18rem' }}>
@@ -190,12 +190,12 @@ const HomePage = () => {
         <div className='col'>
           <div className="row">
             <div className="col">
-              <h4 color="secondary" > News</h4>
+              <h4 color="secondary" >News</h4>
               {/*} 
         <News /> */}
             </div>
             <div className="col">
-              Agenda
+              <h4 color="secondary" >Agenda</h4>
               <Agenda />
             </div>
           </div>
