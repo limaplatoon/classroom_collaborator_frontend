@@ -1,5 +1,5 @@
 import React, { Fragment, useState } from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Login from "./pages/authentication/login";
 import Register from "./pages/authentication/register";
 import myReviewsPage from "./pages/MyReviewsPage"
@@ -15,35 +15,32 @@ import Container from "react-bootstrap/Container";
 import ProtectedRoute from './pages/authentication/requiresAuth';
 import Profile from './pages/ProfilePage';
 import Logout from "./pages/authentication/logout";
+import NavBarContextProvider from "./context/NavBarContext";
 
 
 
 
 const history = createBrowserHistory();
 const App = () => {
-  const [navRenderSwitch, setNavRenderSwitch] = useState(true)
 
-  const flipNavRenderSwitch = () => {
-    setNavRenderSwitch(!navRenderSwitch)
-  }
-
-  const CalenderRenderer = (props) => {
-    return <MyCalenderPage flipNavRenderSwitch={flipNavRenderSwitch} />
-  }
-
+  console.log(localStorage.token)
   const DefaultContainer = () => (
     <Fragment>
-      <Navbar />
-      <div style={{ width: "90%", margin: "0 auto" }}>
-        <Route exact path='/' component={HomePage} />
-        <Route exact path='/myClasses' component={MyClassesPage} />
-        <Route exact path='/myReviews' component={myReviewsPage} />
-        <Route exact path='/Reviews/Professor/1' component={ProfessorReviewsPage} />
-        <Route exact path='/JoinAClass' component={JoinClassPage} />
-        <Route exact path='/my-calender' render={CalenderRenderer} />
-        <Route exact path='/profile' component={Profile} />
+      {!localStorage.getItem('token') && <Redirect to={{ pathname: '/login' }} />}
 
-      </div>
+      <NavBarContextProvider>
+        <Navbar />
+
+        <Container>
+          <Route exact path='/' component={HomePage} />
+          <Route exact path='/myClasses' component={MyClassesPage} />
+          <Route exact path='/myReviews' component={myReviewsPage} />
+          <Route exact path='/Reviews/Professor/:ProfID' component={ProfessorReviewsPage} />
+          <Route exact path='/JoinAClass' component={JoinClassPage} />
+          <Route exact path='/my-calender' component={MyCalenderPage} />
+          <Route exact path='/profile' component={Profile} />
+        </Container>
+      </NavBarContextProvider>
     </Fragment>
   )
 

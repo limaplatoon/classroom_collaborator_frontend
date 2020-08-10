@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Navbar as BootstrapNavbar } from "react-bootstrap";
 import Nav from "react-bootstrap/Nav";
@@ -19,31 +19,10 @@ import alertIcon from "../../static/img/bell_alert.svg";
 import logout from "../../static/img/logout.png";
 import calendar from "../../static/img/calendar.png";
 import classes from "../../static/img/classes.png";
+import { NavBarContext } from "../../context/NavBarContext";
 
 const Navbar = () => {
-  const [alerts, setAlerts] = useState([]);
-  const now = new Date();
-
-  const notificationTimer = (alert) => {
-    let timeDelta = (new Date(alert.event_time) - now) / (1000 * 60);
-    setTimeout(
-      () => setAlerts((state) => [...state, alert]),
-      (timeDelta - 60) * 1000
-    );
-    // setTimeout(() => setAlerts(state => [...state, alert]), (2.5 * alert.id) * 1000)
-  };
-
-  const loadNotifications = async () => {
-    setAlerts([]);
-    const response = await NotificationsAPI.getNotifications();
-    const responseJson = await response.json();
-    responseJson.map((alert) => notificationTimer(alert));
-  };
-
-  const handleNotificationItemClick = async (alertID) => {
-    const response = await NotificationsAPI.updateNotifications(alertID);
-    setAlerts([...alerts].filter((alert) => alert.id !== alertID));
-  };
+  const { alerts, loadNotifications, clearNotification } = useContext(NavBarContext)
 
   {/* 
    useEffect(() => {
@@ -58,7 +37,7 @@ const Navbar = () => {
         {alerts.length > 0 ? (
           <Notifications
             alerts={alerts}
-            handleItemClick={handleNotificationItemClick}
+            handleItemClick={clearNotification}
           />
         ) : (
             <span>no notifications</span>
@@ -66,11 +45,9 @@ const Navbar = () => {
       </Popover.Content>
     </Popover>
   );
-  // bg="light" variant="light"
-  // style={{ color: "#3b5998" }}
   return (
     <div>
-      <BootstrapNavbar class="navbar">
+      <BootstrapNavbar className="navbar">
         <BootstrapNavbar.Brand>
           <Link to="/" style={{ textDecoration: "none" }}>
             <Image className="navbarLogo" src={logo} roundedCircle />
@@ -108,13 +85,13 @@ const Navbar = () => {
           </OverlayTrigger>
         </BootstrapNavbar.Brand>
 
-        <BootstrapNavbar.Brand href="profile">
+        <BootstrapNavbar.Brand >
           <Nav.Link as={Link} to="/profile">
             <Image className="navbarImage" src={bAvatar} roundedCircle />
           </Nav.Link>
         </BootstrapNavbar.Brand>
 
-        <BootstrapNavbar.Brand href="logout">
+        <BootstrapNavbar.Brand >
           <Nav.Link as={Link} to="/logout">
             <Image className="navbarImage" src={logout} />
           </Nav.Link>

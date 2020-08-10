@@ -1,24 +1,36 @@
 import React, { useState, useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 // import Jumbotron from 'react-bootstrap/Jumbotron'
-import Form from 'react-bootstrap/form'
+import Form from 'react-bootstrap/Form'
 import ReviewsAPI from '../API/ReviewsAPI' 
 import ClassSectionAPI from '../API/ClassSectionAPI' 
 import ReviewList from '../components/Reviews/ReviewsList'
 import ReviewForm from '../ReviewForm/ReviewForm'
 
-const ProfessorReviewsPage = () => {
+const ProfessorReviewsPage = (props) => {
 
 //This is used for the User's already created reviews 	
 const [reviews, setreviews] = useState([{id:1,User:'Michael',class_section:'Biology AB345',Description: "Example Review",Professor: "Dr. Exampleson"}])
 
+const[CurrentProfName, setCurrentProfName] = useState(["Professor example"])
 
-//We need to pass in the ProfID from the Route URL!
+
+const ProfID = useParams();
+
+
 
 useEffect(() => {
-const ProfID = 1
-ReviewsAPI.fetchReviewsByProfessor(ProfID).then(ListOfReviewsByProfessor => {
-	setreviews(ListOfReviewsByProfessor)})
-});
+ReviewsAPI.fetchReviewsByProfessor(props.match.params.ProfID).then(ListOfReviewsByProfessor => {
+	setreviews(ListOfReviewsByProfessor["reviews"])})
+	
+},[ProfID]);
+
+
+useEffect(() => {
+ReviewsAPI.fetchProfessor(props.match.params.ProfID).then(ProfName => {
+	setCurrentProfName(ProfName["Professor"])})
+	
+},[ProfID]);
 
 	
   return (
@@ -28,7 +40,7 @@ ReviewsAPI.fetchReviewsByProfessor(ProfID).then(ListOfReviewsByProfessor => {
 		<br></br>
 		<ReviewForm UserSections={UserSections} /> */}
 
-<h2> Professor _____'s Reviews! </h2>
+<h2> Professor {CurrentProfName[0].Last_name} Reviews! </h2>
         <ReviewList Reviews={reviews} />
     </div>
   )

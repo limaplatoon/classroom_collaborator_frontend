@@ -16,7 +16,6 @@ useEffect(() => {
 
 
 const Enroll = (SectionID) => {
-	console.log("Ya clicked")
  return ClassSectionAPI.AddUserToSection(SectionID).then(console.table)
 
 }
