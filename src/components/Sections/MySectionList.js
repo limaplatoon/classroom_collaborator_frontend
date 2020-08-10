@@ -17,7 +17,7 @@ class MySectionList extends Component {
 	 <br></br>
 	 See this Class Calendar! <br></br>
 	{Class.Section} <br></br>
-	{Class.Professor}  <br></br>
+	<Link to={Class.Professor}  <br></br>
 </p>
 </Container> 
 </Jumbotron>

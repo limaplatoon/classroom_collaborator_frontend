@@ -1,4 +1,4 @@
-import baseUrl from './EventsAPI';
+const baseUrl = 'http://127.0.0.1:8000'
 
 
 const fetchCurrentUserClasses = () => {
@@ -24,7 +24,7 @@ const fetchAllClasses = () => {
 
 
 const addSection = (SectionObject) => {
-	return fetch(`${baseUrl}/api/sections/new/`, {
+	return fetch(`http://127.0.0.1:8000/api/sections/new`, {
 	  headers: {
 		Authorization: `JWT ${localStorage.getItem('token')}`,
 		'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ const addSection = (SectionObject) => {
 
 
 const AddUserToSection = (SectionID) => {
-	return fetch(`http://127.0.0.1:8000/api/current_user/sections/${SectionID}/AddAStudent`, {
+	return fetch(`${baseUrl}/api/current_user/sections/${SectionID}/AddAStudent`, {
 	  headers: {
 		Authorization: `JWT ${localStorage.getItem('token')}`,
 		'Content-Type': 'application/json'
