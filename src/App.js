@@ -14,6 +14,7 @@ import ProfessorReviewsPage from './pages/ProfessorReviewsPage';
 import Container from "react-bootstrap/Container";
 import ProtectedRoute from './pages/authentication/requiresAuth';
 import Profile from './pages/ProfilePage';
+import Logout from "./pages/authentication/logout";
 
 
 
@@ -33,7 +34,7 @@ const App = () => {
   const DefaultContainer = () => (
     <Fragment>
       <Navbar />
-      <Container>
+      <div style={{ width: "90%", margin: "0 auto" }}>
         <Route exact path='/' component={HomePage} />
         <Route exact path='/myClasses' component={MyClassesPage} />
         <Route exact path='/myReviews' component={myReviewsPage} />
@@ -42,7 +43,7 @@ const App = () => {
         <Route exact path='/my-calender' render={CalenderRenderer} />
         <Route exact path='/profile' component={Profile} />
 
-      </Container>
+      </div>
     </Fragment>
   )
 
@@ -51,6 +52,7 @@ const App = () => {
       <Router history={history}>
         <Switch>
           <Route exact path="/login" component={Login} />
+          <Route exact path="/logout" component={Logout} />
           <Route exact path="/register" component={Register} />
           <Route component={DefaultContainer} />
         </Switch>

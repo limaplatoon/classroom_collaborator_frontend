@@ -1,29 +1,30 @@
 @import url("https://fonts.googleapis.com/css?family=Rubik");
+
 body {
-    font-family: "Rubik";
+	font-family: "Rubik";
+	background-color: #99a3c2;
 }
 
 code {
-    font-family: "Rubik";
+	font-family: "Rubik";
 }
 
 .imgNullContainer {
-    position: relative;
-    text-align: center;
-    color: black;
+	position: relative;
+	text-align: center;
+	color: black;
 }
 
 .btn {
-    background-color: #2e5bff;
+	background-color: #2e5bff;
 }
-
 
 /* Centered text */
 
 .img_centered_c {
-    left: 0;
-    position: absolute;
-    text-align: center;
-    top: -10px;
-    width: 100%;
+	left: 0;
+	position: absolute;
+	text-align: center;
+	top: -10px;
+	width: 100%;
 }
