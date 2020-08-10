@@ -1,9 +1,11 @@
 const baseUrl = 'http://localhost:8000'
+const token = localStorage.getItem('token')
 
 const getEvents = async () => {
   let response = await fetch(`${baseUrl}/api/events`, {
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `JWT ${token}`,
     }
   })
   return response
@@ -13,6 +15,7 @@ const updateEvent = async (eventID, eventObj) => {
   let response = await fetch(`${baseUrl}/api/events/${eventID}`, {
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `JWT ${token}`,
     },
     method: 'PATCH',
     body: JSON.stringify(eventObj)
@@ -24,6 +27,7 @@ const newEvent = async (eventObj) => {
   let response = await fetch(`${baseUrl}/api/events/new`, {
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `JWT ${token}`,
     },
     method: 'POST',
     body: JSON.stringify(eventObj)
@@ -35,6 +39,7 @@ const deleteEvent = async (eventID) => {
   let response = await fetch(`${baseUrl}/api/events/${eventID}`, {
     headers: {
       'Content-Type': 'application/json',
+      'Authorization': `JWT ${token}`,
     },
     method: 'DELETE',
   })

@@ -1,6 +1,33 @@
 .navbarLogo {
-  max-height: 50px;
+  height: 95px;
+  width: 95px;
 }
+/* 
+Nav.Link {
+  animation-delay: 2.2s;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+} */
+
 .navbarImage {
   max-height: 25px;
 }
+
+.navbar {
+  background-color: white;
+  /* width: 1360px; */
+  height: 80px;
+}
+
+.color:hover {
+  background: #53a7ea;
+  text-decoration: underline;
+}
+
+/* .color:hover {
+  background: #53a7ea;
+} */
+
+/* .navbar:hover {
+  background: #53a7ea;
+} */

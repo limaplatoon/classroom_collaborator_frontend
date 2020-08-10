@@ -29,14 +29,14 @@ const HandleSubmitNewSection = evt => {
 				Section: SectionName,
 				ProfessorLastName: ProfLastName,
 			}
-		console.table(SectionObject);
-		ClassSectionAPI.addSection(SectionObject).then(console.table).then(history.push('/myClasses'))
+		ClassSectionAPI.addSection(SectionObject).then(history.push('/myClasses'))
 }
 
 
 const Enroll = (SectionID) => {
-	console.log("Ya clicked")
+
  return ClassSectionAPI.AddUserToSection(SectionID).then(history.push('/myClasses'))
+
 
 }
 
@@ -47,10 +47,6 @@ const Enroll = (SectionID) => {
     <div>
       <h1>If your class section can't be found below, create a new one! </h1>
 	 <SectionForm HandleSubmitNewSection={HandleSubmitNewSection}/>
-	 
-	  <h2>I have created an api endpoint to create a class section and add the current user to that class section on the back end</h2>  
-
-
 	  <h2> Join One of the Below Classes! </h2>
 	  <h4>Yeah, add a search function similar to news site onchange</h4>
         <AvailableSectionList AvailableClasses={AvailableClasses} enroll = {Enroll}/>
