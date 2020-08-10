@@ -86,8 +86,9 @@ const HomePage = () => {
 
   return (
 
-    <div><br></br>
-      <div className="row">
+    <div style={{ width: "90%", margin: "0 auto" }}>
+      <br></br>
+      <div className="row new">
         {Object.keys(profile).length > 0 ?
           <div className="col-3">
 
@@ -177,7 +178,6 @@ const HomePage = () => {
                 value={formData.last_name}
                 onChange={(e) => handleChange(e)}
               />
-
 
               <label for="profile_picture">Choose Image to Upload</label>
               <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} />
