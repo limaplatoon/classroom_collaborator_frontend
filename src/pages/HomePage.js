@@ -81,12 +81,13 @@ const HomePage = () => {
 
     const response = await API.updateProfile(data)
     //const responseJson = await response.json()
+    console.log(profile)
 
   }
 
   return (
 
-    <div style={{ width: "90%", margin: "0 auto" }}>
+    <div >
       <br></br>
       <div className="row new">
         {Object.keys(profile).length > 0 ?
@@ -100,7 +101,7 @@ const HomePage = () => {
                   <Card.Text>
                     Some quick example text to build on the card title and make up the bulk of
                     the card's content.
-            </Card.Text>
+                  </Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   <ListGroupItem> First Name: {profile.first_name}</ListGroupItem>
@@ -175,7 +176,7 @@ const HomePage = () => {
                 placeholder="College"
                 type="text"
                 name="college"
-                value={formData.last_name}
+                value={formData.college}
                 onChange={(e) => handleChange(e)}
               />
 
@@ -189,8 +190,9 @@ const HomePage = () => {
         <div className='col'>
           <div className="row">
             <div className="col">
-              News
-              <News />
+              <h4 color="secondary" > News</h4>
+              {/*} 
+        <News /> */}
             </div>
             <div className="col">
               Agenda

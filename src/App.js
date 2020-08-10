@@ -28,7 +28,8 @@ const App = () => {
     <Fragment>
       {!localStorage.getItem('token') && <Redirect to={{ pathname: '/login' }} />}
 
-      <NavBarContextProvider>
+      <NavBarContextProvider
+      >
         <Navbar />
 
         <Container>
