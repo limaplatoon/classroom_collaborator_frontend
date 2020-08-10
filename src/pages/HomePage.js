@@ -89,12 +89,12 @@ const HomePage = () => {
 
     <div >
       <br></br>
-      <div className="row new">
+      <div className="row new" sm={{ size: 6, order: 2, offset: 1 }}>
         {Object.keys(profile).length > 0 ?
           <div className="col-4">
 
             <div>
-              <Card className="studentCard" xs={6} md={4} style={{ width: '18rem' }}>
+              <Card className="studentCard" xs={3} md={3} style={{ width: '18rem' }}>
                 <Card.Img variant="top" style={{ width: '100%' }} src={`http://127.0.0.1:8000${profile.profile_picture}`} />
                 <Card.Body>
                   <Card.Title>Student</Card.Title>
@@ -191,8 +191,8 @@ const HomePage = () => {
           <div className="row">
             <div className="col">
               <h4 color="secondary" >News</h4>
-              {/*} 
-        <News /> */}
+
+              <News />
             </div>
             <div className="col">
               <h4 color="secondary" >Agenda</h4>

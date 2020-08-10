@@ -32,7 +32,7 @@ const App = () => {
       >
         <Navbar />
 
-        <Container>
+        <Container >
           <Route exact path='/' component={HomePage} />
           <Route exact path='/myClasses' component={MyClassesPage} />
           <Route exact path='/myReviews' component={myReviewsPage} />
