@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Container from 'react-bootstrap/Container'
 import { Link } from 'react-router-dom'
+import './ReviewsList.css'
 
 
 class ReviewList extends Component {
@@ -14,23 +15,18 @@ class ReviewList extends Component {
 		  const review= this.props.Reviews.map(Rev => {
 			return(
 
-<div className="jumbo" key={Rev.id}>
-
-<Jumbotron >
+<div className="jumbo" key={Rev.ID}>
+<Jumbotron fluid>
 <Container>
-<p>
-	<Link to={ `/Reviews/Professor/${Rev.ProfID}` }>{Rev.Professor}</Link> <br></br>
+<div>
+	<div><Link to={ `/Reviews/Professor/${Rev.ProfID}` }>Professor: {Rev.Professor}</Link></div> <br></br>
 
-	{Rev.section}  <br></br>
-	{Rev.student} <br></br>
-	{Rev.description} <br></br>
-
-
-</p>
+	<div>Class Section: {Rev.section}</div>  <br></br>
+	<div>Reviewer: {Rev.student}</div> <br></br>
+	<div>Review: {Rev.description}</div> <br></br>
+</div>
 </Container>
 </Jumbotron>
-<br></br>
-
 </div> 
 			)
 		  })

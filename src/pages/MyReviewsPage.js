@@ -4,6 +4,7 @@ import ClassSectionAPI from '../API/ClassSectionAPI'
 import ReviewList from '../components/Reviews/ReviewsList'
 import ReviewForm from '../ReviewForm/ReviewForm'
 import { useHistory } from "react-router-dom";
+import './MyReviewsPage.css' 
 
 
 const MyReviewsPage = () => {
@@ -47,7 +48,6 @@ const HandleSubmitReview = evt => {
 		}
 		
 	ReviewsAPI.addReviews(reviewObject).then(AllReviewsByUser => {
-		console.table(AllReviewsByUser["reviews"])
 		setreviews(AllReviewsByUser["reviews"])
 	});
 }
@@ -62,12 +62,12 @@ const HandleSubmitReview = evt => {
 	
   return (
     <div>
-		<h1>Leave a new Review!
+		<h1 style = {{ textalign:'center' }}>Leave a new Review!
         </h1>
 		<br></br>
 		<ReviewForm HandleSubmitReview= {HandleSubmitReview} UserSections={UserSections} />
 
-<h2> Your Past Reviews! </h2>
+<h2> Your Past Class Reviews! </h2>
         <ReviewList Reviews={reviews} />
     </div>
   )

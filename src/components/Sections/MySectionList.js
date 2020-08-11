@@ -12,17 +12,17 @@ class MySectionList extends Component {
 			return(
 
 
-<div className="jumbo" key={Class.ID} >
-<Jumbotron style={{backgroundcolor:'#0000FF'}} >
+<div key={Class.ID} >
+<Jumbotron >
 
 <Container>
-<h2>
+<div>
 	 <br></br>
-	 <Link to={ `/section/${Class.ID}` } style={{fontSize: '2rem'}}>{Class.Section} - {Class.Name}</Link>
+	 <div>Class Name: <Link to={ `/section/${Class.ID}` } >{Class.Name}</Link></div>
 	 <br></br>
-	<Link to={ `/Reviews/Professor/${Class.ProfID}` }>{Class.Professor}</Link>
+	<div>Professor: <Link to={ `/Reviews/Professor/${Class.ProfID}` }>{Class.Professor}</Link></div>
  <br></br>
-</h2>
+</div>
 </Container> 
 </Jumbotron>
 </div> 
