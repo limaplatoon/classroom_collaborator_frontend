@@ -21,6 +21,10 @@ const HomePage = () => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
+  const backToPage = () => {
+    setModal(!modal);
+    window.location.href = '/'
+  }
 
   const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
 
@@ -84,6 +88,7 @@ const HomePage = () => {
 
 
   }
+  console.log(profile.last_name)
 
   return (
 
@@ -106,6 +111,7 @@ const HomePage = () => {
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   <ListGroupItem> First Name: {profile.first_name}</ListGroupItem>
+
                   <ListGroupItem>Last Name: {profile.last_name} </ListGroupItem>
                   <ListGroupItem>College: {profile.college}</ListGroupItem>
                 </ListGroup>
@@ -141,11 +147,11 @@ const HomePage = () => {
                   />
                   <label for="profile_picture">Choose Image to Upload</label>
                   <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} />
-                  <Button color="secondary" type="submit" >Submit</Button>
+                  <Button onclick="window.location.href = '/';" color=" secondary" type="submit" >Submit</Button>
                 </form>
               </ModalBody>
               <ModalFooter>
-                <Button color="secondary" onClick={toggle}>Back-To-Page</Button>
+                <Button color="secondary" onClick={backToPage}>Back-To-Page</Button>
               </ModalFooter>
             </Modal>
 

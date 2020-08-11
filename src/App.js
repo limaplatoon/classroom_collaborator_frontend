@@ -12,7 +12,7 @@ import MyClassesPage from './pages/MyClassesPage';
 import JoinClassPage from './pages/JoinClassPage';
 import ProfessorReviewsPage from './pages/ProfessorReviewsPage';
 import Container from "react-bootstrap/Container";
-import Profile from './pages/ProfilePage';
+
 import Logout from "./pages/authentication/logout";
 import NavBarContextProvider from "./context/NavBarContext";
 import SectionDetailsPage from "./pages/SectionDetailsPage";
@@ -31,23 +31,23 @@ const App = () => {
       {!localStorage.getItem('token')
         ? <Redirect to={{ pathname: '/login' }} />
         :
-          <NavBarContextProvider>
+        <NavBarContextProvider>
           <Navbar />
 
-            <Container>
-              <Route exact path='/' component={HomePage} /> 
-              <Route exact path='/myClasses' component={MyClassesPage} /> 
-              <Route exact path='/myReviews' component={myReviewsPage} /> 
-              <Route exact path='/Reviews/Professor/:ProfID' component={ProfessorReviewsPage}/>
-              <Route exact path='/JoinAClass' component={JoinClassPage} /> 
-              <Route exact path='/my-calender' component={MyCalenderPage} />
-              <Route exact path='/profile' component={Profile} />
-              <MeetingContextProvider>
-                <Route exact path='/section/:sectionID' component={SectionDetailsPage} />
-                <Route exact path='/meeting/:meetingID' component={MeetingPage} />
-              </MeetingContextProvider>
-            </Container>
-          </NavBarContextProvider>
+          <Container>
+            <Route exact path='/' component={HomePage} />
+            <Route exact path='/myClasses' component={MyClassesPage} />
+            <Route exact path='/myReviews' component={myReviewsPage} />
+            <Route exact path='/Reviews/Professor/:ProfID' component={ProfessorReviewsPage} />
+            <Route exact path='/JoinAClass' component={JoinClassPage} />
+            <Route exact path='/my-calender' component={MyCalenderPage} />
+            {/* <Route exact path='/profile' component={Profile} /> */}
+            <MeetingContextProvider>
+              <Route exact path='/section/:sectionID' component={SectionDetailsPage} />
+              <Route exact path='/meeting/:meetingID' component={MeetingPage} />
+            </MeetingContextProvider>
+          </Container>
+        </NavBarContextProvider>
       }
     </Fragment>
   )
