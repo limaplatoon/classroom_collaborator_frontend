@@ -3,6 +3,13 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import ClassSectionAPI from '../API/ClassSectionAPI'
 import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
+import Button from 'react-bootstrap/Button'
+import Popup from 'reactjs-popup'
+import EventsAPI from '../API/EventsAPI'
+import EventForm from '../components/EventForm/EventForm'
+import MeetingForm from '../components/MeetingForm/MeetingForm'
+import { NavBarContext } from "../context/NavBarContext"
+
 
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './SectionDetailsPage.css'
@@ -14,16 +21,34 @@ const formatDatetime = (datetime) => {
   return moment(datetime).format('M/D LT')
 }
 
+const setDateTime = (date, seconds) => {
+  let hour = Math.floor(seconds / 3600)
+  let minutes = Math.floor((seconds - hour*3600) / 60)
+  date.setHours(hour, minutes)
+}
+
 
 const SectionDetails = (props) => {
   const {history} = props
   const sectionID = props.match.params.sectionID
   
   const {notes, getNotes, comments, getComments} = useContext(MeetingContext)
+  const {loadNotifications} = useContext(NavBarContext)
 
   const [details, setDetails] = useState({})
   const [events, setEvents] = useState([])
   const [meetings, setMeetings] = useState([])
+  const [openEventPopup, setOpenEventPopup] = useState(false)
+  const [openMeetingPopup, setOpenMeetingPopup] = useState(false)
+
+  const eventDetails = {
+    title: '',
+    start: 0,
+    end: 0,
+    description: '',
+    location: '',
+    viewable: false,
+  }
 
 
   const loadDetails = async () => {
@@ -51,7 +76,35 @@ const SectionDetails = (props) => {
     loadData()
   }, [])
 
-  console.log(events)
+  const handleEventPopupClose = () => {
+    setOpenEventPopup(false)
+  }
+  const handleMeetingPopupClose = () => {
+    setOpenMeetingPopup(false)
+    loadData()
+  }
+
+  const addEvent = async (eventID, title, startTime, stopTime, description, location, viewable, date) => {
+    const start = new Date(date)
+    const end = new Date(date)
+    setOpenEventPopup(false)
+    setDateTime(start, startTime)
+    setDateTime(end, stopTime)
+    const eventObj = {
+      title: title,
+      start: start,
+      end: end,
+      description: description,
+      location: location,
+      viewable: viewable,
+    }
+    
+
+    const response = await EventsAPI.newSectionEvent(sectionID, eventObj)
+    loadNotifications()
+    loadEvents()
+  }
+
   return (
     <div>
       <div className='sectionDetailTitle'>{details.Section} - {details.Name} - Professor {details.professor_first_name} {details.professor_last_name}</div>
@@ -66,7 +119,9 @@ const SectionDetails = (props) => {
           toolbar={false}
         />
       }
-      <div className='meetingListTitle'>Meeting Notes</div>
+      <Button style={{marginTop: '10px'}} onClick={() => setOpenEventPopup(true)}>add event</Button>
+
+      <div className='meetingListTitle'>Section Meeting</div>
       {meetings &&
         <ListGroup className='meetingList'>
           {meetings.map((meeting, i) => 
@@ -76,6 +131,35 @@ const SectionDetails = (props) => {
           )}
         </ListGroup>
       }
+      <Button style={{marginTop: '10px'}} onClick={() => setOpenMeetingPopup(true)}>add meeting</Button>
+
+      <Popup
+        open={openEventPopup}
+        closeOnDocumentClick={false}
+        onClose={handleEventPopupClose}
+      >
+        <EventForm
+          addEvent={addEvent}
+          deleteEvent={false}
+          eventDetails={eventDetails}
+          closePopup={handleEventPopupClose}
+          selectDate={true}
+        />
+      </Popup>
+
+      <Popup
+        open={openMeetingPopup}
+        closeOnDocumentClick={false}
+        onClose={setOpenMeetingPopup}
+        contentStyle={{maxWidth: '400px'}}
+      >
+        <MeetingForm 
+          sectionID={sectionID} 
+          // addMeeting={addMeeting}
+          closePopup={handleMeetingPopupClose}
+        />
+      </Popup>
+
     </div>
   )
 }

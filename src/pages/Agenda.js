@@ -18,7 +18,7 @@ const Agenda = (props) => {
   console.log(agenda)
   const agenda_list = agenda.map(a => (
     <ListGroupItem tag="a" href="/my-calender">
-      {a.title} - {a.location}
+      <h5>{a.title} - {a.location}</h5>
       <p style={{ fontSize: '12px' }}>
         <i>Start:</i> {moment(a.start).format('MMMM Do YYYY, h:mm:ss a')}  {'  '} <i>End:</i> {moment(a.end).format('MMMM Do YYYY, h:mm:ss a')}
       </p>

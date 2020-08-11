@@ -23,7 +23,7 @@ const getMeetings = async () => {
 }
 
 const newMeeting = async (meetingObj) => {
-  let response = await fetch(`${baseUrl}/api/meetings/new/`, {
+  let response = await fetch(`${baseUrl}/api/meetings/new`, {
     headers: {
       Authorization: `JWT ${localStorage.getItem('token')}`,
       'Content-Type': 'application/json',

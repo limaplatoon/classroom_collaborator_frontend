@@ -134,19 +134,19 @@ const HomePage = () => {
               <ModalBody>
                 <form onSubmit={updateProfile}>
                   <label>First Name</label>
-                  <input
+                  <p> <input
                     placeholder="First Name"
                     type="text"
                     name="first_name"
                     value={formData.first_name}
-                    onChange={(e) => handleChange(e)} />
+                    onChange={(e) => handleChange(e)} /></p>
                   <label>Last Name</label>
-                  <input
+                  <p><input
                     placeholder="Last Name"
                     type="text"
                     name="last_name"
                     value={formData.last_name}
-                    onChange={(e) => handleChange(e)} />
+                    onChange={(e) => handleChange(e)} /> </p>
                   <label>College</label>
                   <input
                     placeholder="College"
@@ -155,13 +155,14 @@ const HomePage = () => {
                     value={formData.college}
                     onChange={(e) => handleChange(e)}
                   />
-                  <label for="profile_picture">Choose Image to Upload</label>
+
+                  <p><label for="profile_picture">Choose Image to Upload</label></p>
                   <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} />
-                  <Button onclick="window.location.href = '/';" color=" secondary" type="submit" >Submit</Button>
+                  <Button onClick="window.location.href = '/';" color=" secondary" type="submit" >Submit</Button>
                 </form>
               </ModalBody>
               <ModalFooter>
-                <Button color="secondary" onClick={backToPage}>Back-To-Page</Button>
+                <Button color="info" onClick={backToPage}>Back-To-Page</Button>
               </ModalFooter>
             </Modal>
 
@@ -171,7 +172,7 @@ const HomePage = () => {
           <div className="col">
             <form onSubmit={createProfile}>
               <label>First Name</label>
-              <input
+              <p><input
                 placeholder="First Name"
                 type="text"
                 name="first_name"
@@ -179,27 +180,30 @@ const HomePage = () => {
                 onChange={(e) => handleChange(e)}
 
               />
-              <label>Last Name</label>
-              <input
-                placeholder="Last Name"
-                type="text"
-                name="last_name"
-                value={formData.last_name}
-                onChange={(e) => handleChange(e)}
-              />
+              </p>
+              <p> <label>Last Name</label>
+                <input
+                  placeholder="Last Name"
+                  type="text"
+                  name="last_name"
+                  value={formData.last_name}
+                  onChange={(e) => handleChange(e)}
+                />
+              </p>
 
               <label>College</label>
-              <input
+              <p><input
                 placeholder="College"
                 type="text"
                 name="college"
                 value={formData.college}
                 onChange={(e) => handleChange(e)}
               />
+              </p>
 
               <label for="profile_picture">Choose Image to Upload</label>
               <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} />
-              <button type="submit">Upload Image</button>
+              <Button onClick={backToPage} color="success" type="submit">Upload & submit </Button>
             </form>
 
           </div>}
@@ -213,7 +217,7 @@ const HomePage = () => {
             </div>
             <div className="col">
               <h4 color="secondary" >Agenda</h4>
-              {/* <Agenda /> */}
+              <Agenda />
             </div>
           </div>
         </div>

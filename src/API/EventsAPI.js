@@ -37,6 +37,19 @@ const newEvent = async (eventObj) => {
   return response
 }
 
+const newSectionEvent = async (sectionID, eventObj) => {
+  const token = localStorage.getItem('token')
+  let response = await fetch(`${baseUrl}/api/sections/${sectionID}/events`, {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `JWT ${token}`,
+    },
+    method: 'POST',
+    body: JSON.stringify(eventObj)
+  })
+  return response
+}
+
 const deleteEvent = async (eventID) => {
   const token = localStorage.getItem('token')
   let response = await fetch(`${baseUrl}/api/events/${eventID}`, {
@@ -54,4 +67,5 @@ export default {
   updateEvent,
   newEvent,
   deleteEvent,
+  newSectionEvent,
 }

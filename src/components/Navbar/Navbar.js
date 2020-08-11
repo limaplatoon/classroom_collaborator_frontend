@@ -6,30 +6,20 @@ import Image from "react-bootstrap/Image";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Notifications from "../Notifications/Notifications";
-import NotificationsAPI from "../../API/NotificationsAPI";
-import Logout from "../../pages/authentication/logout.js";
-
 import "./NavBar.css";
 import logo from "../../static/img/logoClassUp.png";
-import blankAvatar from "../../static/img/blank-avatar.svg";
 import bAvatar from "../../static/img/b-avatar.png";
-// import mailIcon from "../../static/img/mail.jpeg";
 import bellIcon from "../../static/img/bell.svg";
 import alertIcon from "../../static/img/bell_alert.svg";
 import logout from "../../static/img/logout.png";
-import calendar from "../../static/img/calendar.png";
-import classes from "../../static/img/classes.png";
 import { NavBarContext } from "../../context/NavBarContext";
 
 const Navbar = () => {
   const { alerts, loadNotifications, clearNotification } = useContext(NavBarContext)
 
-  {/* 
-   useEffect(() => {
-    loadNotifications();
-  }, []);
-
-            */}
+  useEffect(() => {
+    loadNotifications()
+  }, [])
 
   const popover = (
     <Popover id="popover-basic">
@@ -54,9 +44,6 @@ const Navbar = () => {
           </Link>
         </BootstrapNavbar.Brand>
 
-        {/* <BootstrapNavbar.Brand href="#profile">
-          <Image className="navbarImage" src={blankAvatar} roundedCircle />
-        </BootstrapNavbar.Brand> */}
         <Nav className="mr-auto">
           <Nav.Link as={Link} to="/my-calender">
             My Calendar

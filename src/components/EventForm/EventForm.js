@@ -4,6 +4,8 @@ import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import TimePicker from 'react-bootstrap-time-picker'
+import DatePicker from "react-datepicker"
+import "react-datepicker/dist/react-datepicker.css"
 
 const dateToMinutes = (date) => {
   if (date) {
@@ -24,13 +26,14 @@ const EventForm = (props) => {
   const [location, setLocation] = useState(props.eventDetails.location)
   const [viewable, setViewable] = useState(props.eventDetails.viewable)
   const [titleWarning, setTitleWarning] = useState(false)
+  const [date, setDate] = useState(new Date())
 
   const handleSubmit = (event) => {
     event.preventDefault()
     if (!title) {
       setTitleWarning(true)
     } else {
-    props.addEvent(props.eventDetails.id, title, startTime, stopTime, description, location, viewable)
+    props.addEvent(props.eventDetails.id, title, startTime, stopTime, description, location, viewable, date)
     }
   }
 
@@ -61,9 +64,9 @@ const EventForm = (props) => {
   
   return (
     <div style={{display: 'relative', margin: '5px 20px 20px 20px'}}>
-      <div style={{textAlign: 'right'}}>
+      {!props.selectDate && <div style={{textAlign: 'right'}}>
         <strong>{dateToStr(props.eventDetails.start)} → {dateToStr(props.eventDetails.end)}</strong>
-      </div>
+      </div>}
       <Form>
         <Row>
           <Col xs={7}>
@@ -95,12 +98,24 @@ const EventForm = (props) => {
               <Form.Control as='textarea' placeholder="description..." value={description} onChange={handleDescriptionChange} />
             </Form.Group>
           </Col>
+
           <Col style={{display: 'flex', flexDirection: 'column', justifyContent: 'space-between'}}>
-            <div>
+
+            <div style={{display: 'flex', flexDirection: 'column'}}>
+              
+              {props.selectDate && <Form.Group controlId="formLocation">
+                <Form.Label>Date</Form.Label><br />
+                <DatePicker
+                  selected={date}
+                  onChange={(newDate) => setDate(newDate)}
+                />
+              </Form.Group>}
+
               <Form.Group controlId="formLocation">
                 <Form.Label>Location</Form.Label>
                 <Form.Control placeholder="location..." value={location} onChange={handleSetLocation} />
               </Form.Group>
+
               <Form.Group controlId="formViewable">
                 <Form.Check type="checkbox" label="Viewable by Friends" checked={viewable} onChange={handleSetViewable} />
               </Form.Group>
