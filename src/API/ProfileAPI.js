@@ -11,21 +11,33 @@ const getProfile = async () => {
 }
 
 const createProfile = async (userData) => {
-  let response = await fetch(`${baseUrl}/api/profile/`, {
-    headers: {
-      //'Content-Type': 'application/json',
-      'Authorization': `jwt ${localStorage.getItem('token')}`,
-    },
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `jwt ${localStorage.getItem('token')}`)
+
+  const requestOptions = {
     method: 'POST',
-    body: JSON.stringify(userData)
-  })
+    headers: myHeaders,
+    body: userData,
+    redirect: 'follow'
+  };
+
+  let response = await fetch(`${baseUrl}/api/profile/`, requestOptions)
   return response
 }
 
+const updateProfile = async (userData) => {
+  const myHeaders = new Headers();
+  myHeaders.append("Authorization", `jwt ${localStorage.getItem('token')}`)
 
+  const requestOptions = {
+    method: 'PUT',
+    headers: myHeaders,
+    body: userData,
+    redirect: 'follow'
+  };
 
+  let response = await fetch(`${baseUrl}/api/profile/`, requestOptions)
+  return response
+}
 
-
-
-
-export default { getProfile, createProfile }
+export default { getProfile, createProfile, updateProfile }

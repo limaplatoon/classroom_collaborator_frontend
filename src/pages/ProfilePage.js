@@ -54,10 +54,12 @@ const ProfilePage = () => {
     //const responseJson = await response.json()
 
   }
-
+  console.log(profile)
 
   return Object.keys(profile).length > 0 ? (
+
     <div>
+
       <img style={{ width: '20%' }} src={`http://127.0.0.1:8000${profile.profile_picture}`} /><br />
       First Name: {profile.first_name} <br />
       Last Name: {profile.last_name} <br />

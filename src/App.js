@@ -1,5 +1,5 @@
-import React, { Fragment, useState } from "react";
-import { BrowserRouter as Router, Route, Switch, Redirect} from "react-router-dom";
+import React, { Fragment } from "react";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import Login from "./pages/authentication/login";
 import Register from "./pages/authentication/register";
 import myReviewsPage from "./pages/MyReviewsPage"
@@ -12,8 +12,8 @@ import MyClassesPage from './pages/MyClassesPage';
 import JoinClassPage from './pages/JoinClassPage';
 import ProfessorReviewsPage from './pages/ProfessorReviewsPage';
 import Container from "react-bootstrap/Container";
-import ProtectedRoute from './pages/authentication/requiresAuth';
 import Profile from './pages/ProfilePage';
+import Logout from "./pages/authentication/logout";
 import NavBarContextProvider from "./context/NavBarContext";
 import SectionDetailsPage from "./pages/SectionDetailsPage";
 import MeetingContextProvider from "./context/MeetingContext";
@@ -45,8 +45,6 @@ const App = () => {
               <MeetingContextProvider>
                 <Route exact path='/section/:sectionID' component={SectionDetailsPage} />
                 <Route exact path='/meeting/:meetingID' component={MeetingPage} />
-                <Route exact path='/test1' component={SectionDetailsPage} />
-                <Route exact path='/test2' component={MeetingPage} />
               </MeetingContextProvider>
             </Container>
           </NavBarContextProvider>
@@ -54,11 +52,14 @@ const App = () => {
     </Fragment>
   )
 
+
+
   return (
     <div>
       <Router history={history}>
         <Switch>
           <Route exact path="/login" component={Login} />
+          <Route exact path="/logout" component={Logout} />
           <Route exact path="/register" component={Register} />
           <Route component={DefaultContainer} />
         </Switch>
