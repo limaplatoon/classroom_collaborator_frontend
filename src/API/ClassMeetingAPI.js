@@ -45,7 +45,6 @@ const deleteMeeting = async (meetingID) => {
   })
 }
 
-
 const getUserMeetings = async () => {
   let response = await fetch(`${baseUrl}/api/current_user/meetings`, {
     headers: {
@@ -85,3 +84,4 @@ export default {
   getMeetingComments,
   getUserMeetings,
 }
+
