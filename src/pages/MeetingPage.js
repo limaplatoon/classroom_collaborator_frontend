@@ -10,11 +10,18 @@ import NotesAPI from '../API/NotesAPI'
 import CommentsAPI from '../API/CommentsAPI'
 import './MeetingsPage.css'
 
-const MeetingPage = () => {
+const getBaseName = (path) => {
+  const splitPath = path.split('/')
+  return splitPath[splitPath.length-1]
+}
+
+const MeetingPage = (props) => {
+  const {history} = props
+  const meetingID = props.match.params.meetingID
+
   const {notes, getNotes, comments, getComments} = useContext(MeetingContext)
   const [openPopupNotes, setOpenPopupNotes] = useState(false)
   const [openPopupComments, setOpenPopupComments] = useState(false)
-  const [meetingID, setMeetingID] = useState(1)
 
   
   const loadDetails = async () => {
@@ -44,7 +51,6 @@ const MeetingPage = () => {
     getNotes()
     setOpenPopupNotes(false)
   }
-  // console.log(comments)
 
   const submitCommentForm = async (formData) => {
     formData.append('meeting', meetingID)
@@ -54,34 +60,38 @@ const MeetingPage = () => {
   }
 
   return (
-    <div>
-      <div className='noteHeaders'>Notes</div>
-      <ListGroup className='meetingList'>
-      
-      {notes['1'] && notes['1'].map((note, i) => {
-        if (note.text) {
+    <div style={{marginBlock: '50px'}}>
+      <div>
+        <div className='noteHeaders'>Notes</div>
+        <ListGroup className='meetingList' style={{marginBlock: '10px'}}>
+        
+        {notes[meetingID] && notes[meetingID].map((note, i) => {
+          if (note.text) {
+            return (
+              <ListGroup.Item key={i}>
+                <div><strong>{note.username}</strong> → {note.text}</div>
+              </ListGroup.Item>
+            )
+          }
           return (
             <ListGroup.Item key={i}>
-              <div><strong>{note.username}</strong> → {note.text}</div>
+              <div><strong>{note.username}</strong> → <a href={note.file}>{getBaseName(note.file)}</a></div>
             </ListGroup.Item>
           )
-        }
-        return (
-          <ListGroup.Item key={i}>
-            <div><strong>{note.username}</strong> → <a href={note.file}>{note.description}</a></div>
-          </ListGroup.Item>
-        )
-      })}
-      </ListGroup>
-
-      <Button onClick={handleAddNote}>add notes</Button>
-      
-      <div className='noteHeaders'>Comments</div>
-      <div className='commentReply' onClick={() => {setOpenPopupComments('')}}>add comment</div>
-      
-      {comments[meetingID] && comments[meetingID].map((comment) => {
-        return <CommentComponent comment={comment} setOpenPopup={setOpenPopupComments} key={comment.id}/>
         })}
+        </ListGroup>
+
+        <Button onClick={handleAddNote}>add notes</Button>
+      </div>
+
+      <div style={{marginBlock: '50px'}}>
+        <div className='noteHeaders'>Comments</div>
+        <div className='commentReply' onClick={() => {setOpenPopupComments('')}}>add comment</div>
+        
+        {comments[meetingID] && comments[meetingID].map((comment) => {
+          return <CommentComponent comment={comment} setOpenPopup={setOpenPopupComments} key={comment.id}/>
+          })}
+      </div>
 
       <Popup
         open={openPopupNotes}

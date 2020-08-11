@@ -1,5 +1,5 @@
 const baseUrl = 'http://localhost:8000'
-const token = localStorage.getItem('token')
+
 
 const fetchCurrentUserClasses = () => {
 	return fetch (`http://127.0.0.1:8000/api/current_user/sections/all`, {headers: {
@@ -47,6 +47,7 @@ const AddUserToSection = (SectionID) => {
 	}
 	
 const getSectionDetails = async (SectionID) => {
+	const token = localStorage.getItem('token')
 	let response = await fetch(`${baseUrl}/api/sections/${SectionID}`, {
 		headers: {
 			'Content-Type': 'application/json',
@@ -57,6 +58,7 @@ const getSectionDetails = async (SectionID) => {
 }
 
 const getSectionEvents = async (SectionID) => {
+	const token = localStorage.getItem('token')
 	let response = await fetch(`${baseUrl}/api/sections/${SectionID}/events`, {
 		headers: {
 			'Content-Type': 'application/json',

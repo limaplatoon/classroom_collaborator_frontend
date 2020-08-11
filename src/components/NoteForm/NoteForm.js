@@ -4,15 +4,9 @@ import Button from 'react-bootstrap/Button'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import DropZone from '../DropZone/DropZone'
-import API from '../../API/NotesAPI'
 
 
-const classList = [
-  'Art 10',
-  'Physics 200',
-]
-
-const NoteForm = ({meetingID, submitForm, closePopup}) => {
+const NoteForm = ({ submitForm, closePopup}) => {
   const [textNote, setTextNote] = useState(true)
   const [fileList, setFileList] = useState([])
   const [description, setDescription] = useState('')
@@ -22,7 +16,7 @@ const NoteForm = ({meetingID, submitForm, closePopup}) => {
     event.preventDefault()
     let formData = new FormData()
     formData.append('description', description)
-    formData.append('meeting', meetingID)
+    
     if (textNote) {
       formData.append('text', note)
     } else{
