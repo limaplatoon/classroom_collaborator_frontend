@@ -28,10 +28,11 @@ const App = () => {
     <Fragment>
       {!localStorage.getItem('token') && <Redirect to={{ pathname: '/login' }} />}
 
-      <NavBarContextProvider>
+      <NavBarContextProvider
+      >
         <Navbar />
 
-        <Container>
+        <Container >
           <Route exact path='/' component={HomePage} />
           <Route exact path='/myClasses' component={MyClassesPage} />
           <Route exact path='/myReviews' component={myReviewsPage} />
