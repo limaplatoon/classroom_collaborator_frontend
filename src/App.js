@@ -41,7 +41,7 @@ const App = () => {
             <Route exact path='/Reviews/Professor/:ProfID' component={ProfessorReviewsPage} />
             <Route exact path='/JoinAClass' component={JoinClassPage} />
             <Route exact path='/my-calender' component={MyCalenderPage} />
-            {/* <Route exact path='/profile' component={Profile} /> */}
+            {/*<Route exact path='/profile' component={Profile} />*/}
             <MeetingContextProvider>
               <Route exact path='/section/:sectionID' component={SectionDetailsPage} />
               <Route exact path='/meeting/:meetingID' component={MeetingPage} />

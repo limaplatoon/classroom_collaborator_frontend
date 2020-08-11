@@ -1,10 +1,14 @@
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState, useEffect } from 'react'
 import jwtDecode from 'jwt-decode';
 import API from '../API/ProfileAPI'
 import Agenda from './Agenda';
 import News from './News';
 import { Card, ListGroupItem, ListGroup } from 'react-bootstrap';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Row, Col, Container } from 'reactstrap';
+import Title from '../static/img/mydash.png';
+import { Image } from "react-bootstrap";
 
 
 
@@ -91,23 +95,29 @@ const HomePage = () => {
   console.log(profile.last_name)
 
   return (
+    <div class="container" style={{
+      backgroundColor: '#f4f6fc',
+      minHeight: '100vh',
 
-    <div >
+      backgroundRepeat: 'no-repeat',
+      // backgroundImage: `url(${Title})`
+    }}>
 
-      <br></br>
-      <div className="row new" sm={{ size: 6, order: 2, offset: 1 }}>
+      <div style={styles.titleStyle}>
+        <Image className="titleimage" src={Title} style={styles.imageStyle}></Image>
+      </div>
+      <div className="row" sm={{ size: 6, order: 2, offset: 1 }}>
+
         {Object.keys(profile).length > 0 ?
           <div className="col-4">
 
             <div>
+              <h4 color="secondary" >My Profile</h4>
               <Card className="studentCard" xs={3} md={3} style={{ width: '18rem' }}>
                 <Card.Img variant="top" style={{ width: '100%' }} src={`http://127.0.0.1:8000${profile.profile_picture}`} />
                 <Card.Body>
                   <Card.Title>Student</Card.Title>
-                  <Card.Text>
-                    Some quick example text to build on the card title and make up the bulk of
-                    the card's content.
-                  </Card.Text>
+
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   <ListGroupItem> First Name: {profile.first_name}</ListGroupItem>
@@ -119,7 +129,7 @@ const HomePage = () => {
               </Card>
             </div>
 
-            <Modal isOpen={modal} toggle={toggle}>
+            <Modal style={{ width: '30rem' }} isOpen={modal} toggle={toggle}>
               <ModalHeader toggle={toggle} close={closeBtn}>Modal title</ModalHeader>
               <ModalBody>
                 <form onSubmit={updateProfile}>
@@ -194,16 +204,16 @@ const HomePage = () => {
 
           </div>}
 
-        <div className='col'>
-          <div className="row">
-            <div className="col">
+        <div className='col' style={styles.colStyle}>
+          <div className="row" style={styles.colStyle}>
+            <div className="col" style={styles.colStyle}>
               <h4 color="secondary" >News</h4>
 
               <News />
             </div>
             <div className="col">
               <h4 color="secondary" >Agenda</h4>
-              <Agenda />
+              {/* <Agenda /> */}
             </div>
           </div>
         </div>
@@ -213,6 +223,64 @@ const HomePage = () => {
   )
 }
 
+const styles = {
+  titleStyle: {
+    textAlign: 'center',
+    justifyContent: 'center',
+  },
+
+  imageStyle: {
+    width: '275px',
+    // minHeight: '50%',
+  },
+
+  colStyle: {
+    padding: '0px',
+    gap: '0px',
+  },
+
+  headingStyles: {
+    textAlign: 'center',
+    fontSize: '1.5em',
+    color: "#3f21ba",
+    fontWeight: 'bold'
+  },
+
+  mainHeading: {
+    padding: '1em 0em 1.5em 0em',
+    textAlign: 'center',
+    fontSize: '2em',
+    color: "#3f21ba",
+    fontWeight: 'bold'
+  },
+
+  boxStyles: {
+    backgroundColor: "#27273f",
+    // padding: '.3em',
+    borderRadius: '5px',
+    color: '#eee',
+    minHeight: '200px',
+    boxShadow: '1px 2px 10px rgba(0, 0, 0, 0.3)'
+  },
+
+  cardStyles: {
+    marginTop: '1em',
+    boxShadow: '3px 2px 20px rgba(0, 0, 0, 0.1)'
+  },
+
+  cardImage: {
+    width: '120px',
+    height: '140px',
+    borderRadius: '100%',
+    backgroundColor: '#ccc',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    transform: 'translateY(-20%)'
+  },
+
+
+};
 
 export default HomePage
 

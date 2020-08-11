@@ -7,7 +7,6 @@ import Login from "./login";
 function Logout() {
   let history = useHistory();
   localStorage.setItem("token", '');
-
   localStorage.clear();
   history.push("/login");
 

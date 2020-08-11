@@ -56,16 +56,16 @@ const AddUserToSection = (SectionID) => {
 	})
 }
 
-const getSectionDetails = async (SectionID) => {
-	const token = localStorage.getItem('token')
-	let response = await fetch(`${baseUrl}/api/sections/${SectionID}`, {
-		headers: {
-			'Content-Type': 'application/json',
-			'Authorization': `JWT ${token}`,
-		}
-	})
-	return response
-}
+// const getSectionEvents = async (SectionID) => {
+// 	const token = localStorage.getItem('token')
+// 	let response = await fetch(`${baseUrl}/api/sections/${SectionID}/events`, {
+// 		headers: {
+// 			'Content-Type': 'application/json',
+// 			'Authorization': `JWT ${token}`,
+// 		}
+// 	})
+// 	return response
+// }
 
 // const getSectionEvents = async (SectionID) => {
 // 	const token = localStorage.getItem('token')
@@ -84,6 +84,6 @@ export default {
 	addSection,
 	AddUserToSection,
 	fetchAllClasses,
-	getSectionDetails,
+	// {/*getSectionDetails,*/ }
 	getSectionEvents,
 }
