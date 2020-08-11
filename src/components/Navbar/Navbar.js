@@ -86,12 +86,6 @@ const Navbar = () => {
         </BootstrapNavbar.Brand>
 
         <BootstrapNavbar.Brand >
-          <Nav.Link as={Link} to="/profile">
-            <Image className="navbarImage" src={bAvatar} roundedCircle />
-          </Nav.Link>
-        </BootstrapNavbar.Brand>
-
-        <BootstrapNavbar.Brand >
           <Nav.Link as={Link} to="/logout">
             <Image className="navbarImage" src={logout} />
           </Nav.Link>
