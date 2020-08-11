@@ -15,6 +15,7 @@ const Agenda = (props) => {
   useEffect(() => {
     getAgenda()
   }, [])
+  console.log(agenda)
   const agenda_list = agenda.map(a => (
     <ListGroupItem tag="a" href="/my-calender">
       {a.title} - {a.location}
@@ -23,10 +24,20 @@ const Agenda = (props) => {
       </p>
     </ListGroupItem>))
   return (
+
+
+
     <ListGroup flush>
       {agenda_list}
     </ListGroup>
+
+
+
   );
+
+
+
+
 
 }
 

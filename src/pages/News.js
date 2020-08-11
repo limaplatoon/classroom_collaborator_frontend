@@ -24,9 +24,10 @@ const News = () => {
     <ListGroup>
       {news.map(n => (
 
-        <ListGroupItem tag="a" target="_blank" href={n.link}>
+        <ListGroupItem tag="a" target="_blank" href={n.url}>
           <ListGroupItemHeading>{n.title}</ListGroupItemHeading>
           <ListGroupItemText>
+            {n.description}
           </ListGroupItemText>
         </ListGroupItem>
       ))}

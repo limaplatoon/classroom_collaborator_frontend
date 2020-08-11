@@ -81,33 +81,34 @@ const HomePage = () => {
 
     const response = await API.updateProfile(data)
     //const responseJson = await response.json()
+    console.log(profile)
 
   }
 
   return (
 
-    <div style={{ width: "90%", margin: "0 auto" }}>
+    <div >
       <br></br>
-      <div className="row new">
+      <div className="row new" sm={{ size: 6, order: 2, offset: 1 }}>
         {Object.keys(profile).length > 0 ?
-          <div className="col-3">
+          <div className="col-4">
 
             <div>
-              <Card className="studentCard" xs={6} md={4} style={{ width: '18rem' }}>
+              <Card className="studentCard" xs={3} md={3} style={{ width: '18rem' }}>
                 <Card.Img variant="top" style={{ width: '100%' }} src={`http://127.0.0.1:8000${profile.profile_picture}`} />
                 <Card.Body>
                   <Card.Title>Student</Card.Title>
                   <Card.Text>
                     Some quick example text to build on the card title and make up the bulk of
                     the card's content.
-            </Card.Text>
+                  </Card.Text>
                 </Card.Body>
                 <ListGroup className="list-group-flush">
                   <ListGroupItem> First Name: {profile.first_name}</ListGroupItem>
                   <ListGroupItem>Last Name: {profile.last_name} </ListGroupItem>
                   <ListGroupItem>College: {profile.college}</ListGroupItem>
                 </ListGroup>
-                <button onClick={toggle}>edit Profile</button>
+                <Button color="success" onClick={toggle}>Edit</Button>
               </Card>
             </div>
 
@@ -139,11 +140,11 @@ const HomePage = () => {
                   />
                   <label for="profile_picture">Choose Image to Upload</label>
                   <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} />
-                  <Button color="secondary" type="submit" >Cancel</Button>
+                  <Button color="secondary" type="submit" >Submit</Button>
                 </form>
               </ModalBody>
               <ModalFooter>
-                <Button color="secondary" onClick={toggle}>Cancel</Button>
+                <Button color="secondary" onClick={toggle}>Back-To-Page</Button>
               </ModalFooter>
             </Modal>
 
@@ -175,7 +176,7 @@ const HomePage = () => {
                 placeholder="College"
                 type="text"
                 name="college"
-                value={formData.last_name}
+                value={formData.college}
                 onChange={(e) => handleChange(e)}
               />
 
@@ -189,11 +190,12 @@ const HomePage = () => {
         <div className='col'>
           <div className="row">
             <div className="col">
-              News
+              <h4 color="secondary" >News</h4>
+
               <News />
             </div>
             <div className="col">
-              Agenda
+              <h4 color="secondary" >Agenda</h4>
               <Agenda />
             </div>
           </div>
