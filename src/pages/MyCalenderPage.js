@@ -17,17 +17,16 @@ const setDateTime = (date, seconds) => {
   date.setHours(hour, minutes)
 }
 
-const MyCalenderPage = ({flipNavRenderSwitch}) => {
+const MyCalenderPage = () => {
   const {loadNotifications} = useContext(NavBarContext)
   const [openPopup, setOpenPopup] = useState(false)
   const [events, setEvents] = useState([])
-  const [sections, setSections] = useState([])
   const [eventDetails, setEventDetails] = useState({
-    title: undefined,
+    title: '',
     start: 0,
     end: 0,
-    description: undefined,
-    location: undefined,
+    description: '',
+    location: '',
     viewable: false,
   })
  
@@ -40,7 +39,7 @@ const MyCalenderPage = ({flipNavRenderSwitch}) => {
     setEvents(responseJson)
   }
 
-  const loadSectionEvents = async (sectionID) => {
+  const loadSectionEvent = async (sectionID) => {
     const response = await SectionAPI.getSectionEvents(sectionID)
     const responseJson = await response.json()
     responseJson.map((event) => {
@@ -51,31 +50,28 @@ const MyCalenderPage = ({flipNavRenderSwitch}) => {
     })
   }
 
+  const loadSectionEvents = async () => {
+    const responseJson = await ClassMeetingAPI.getSections()
+    const sections = responseJson.sections
+    sections.map((section) => loadSectionEvent(section.ID))
+  }
   const loadEvents = async () => {
     await loadUserEvents()
+    await loadSectionEvents()
   }
   
   useEffect(() => {
-    sections.map((section) => loadSectionEvents(section.ID))
-  }, [sections])
-
-  useEffect(() => {
     loadEvents()
-    getSections()
   }, [])
 
-  const getSections = async () => {
-    const responseJson = await ClassMeetingAPI.getSections()
-    setSections(responseJson.sections);
-  };
-  
+
   const handleSelectSlot = ({start, end}) => {
     setEventDetails({
       title: '',
       start: start,
       end: end,
-      description: undefined,
-      location: undefined,
+      description: '',
+      location: '',
       viewable: false,
     })
     setOpenPopup(true)
@@ -93,7 +89,7 @@ const MyCalenderPage = ({flipNavRenderSwitch}) => {
     setOpenPopup(false)
   }
   
-  const addEvent = async (eventID, title, startTime, stopTime, description, location, viewable) => {
+  const addEvent = async (eventID, title, startTime, stopTime, description, location, viewable, date) => {
     setOpenPopup(false)
     setDateTime(eventDetails.start, startTime)
     setDateTime(eventDetails.end, stopTime)
@@ -104,7 +100,6 @@ const MyCalenderPage = ({flipNavRenderSwitch}) => {
       description: description,
       location: location,
       viewable: viewable,
-      // userID: 1,
     }
     
     if (eventID) {
@@ -152,6 +147,7 @@ const MyCalenderPage = ({flipNavRenderSwitch}) => {
           deleteEvent={deleteEvent}
           eventDetails={eventDetails}
           closePopup={handlePopupClose}
+          selectDate={false}
         />
       </Popup>
       <br />

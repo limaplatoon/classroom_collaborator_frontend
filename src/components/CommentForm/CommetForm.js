@@ -17,18 +17,18 @@ const CommentForm = ({submitForm, closePopup, parentID}) => {
   }
 
   return (
-    <div>
+    <div style={{margin: '50px'}}>
       <Form onSubmit={handleSubmit}>
 
         <Form.Group as={Row} controlId="formTextNote">
-          <Form.Label column sm={2}>Comment</Form.Label>
-          <Col sm={10}>
+          {/* <Form.Label column sm={2}>Comment</Form.Label> */}
+          <Col sm={12}>
             <Form.Control as="textarea" placeholder="comment..." value={note} onChange={(event) => setNote(event.target.value)}/>
           </Col>
         </Form.Group>
 
         <Form.Group as={Row}>
-          <Col sm={{ span: 10, offset: 2 }}>
+          <Col sm={12}>
             <Button style={{marginRight: '10px'}} type="submit">submit</Button>
             <Button onClick={() => {closePopup()}}>cancel</Button>
           </Col>
