@@ -3,6 +3,8 @@ import { Calendar, momentLocalizer } from 'react-big-calendar'
 import moment from 'moment'
 import Popup from 'reactjs-popup'
 import API from '../API/EventsAPI'
+import SectionAPI from '../API/ClassSectionAPI'
+import ClassMeetingAPI from '../API/ClassMeetingAPI'
 import { NavBarContext } from "../context/NavBarContext"
 
 import 'react-big-calendar/lib/css/react-big-calendar.css'
@@ -17,9 +19,9 @@ const setDateTime = (date, seconds) => {
 
 const MyCalenderPage = ({flipNavRenderSwitch}) => {
   const {loadNotifications} = useContext(NavBarContext)
-
   const [openPopup, setOpenPopup] = useState(false)
   const [events, setEvents] = useState([])
+  const [sections, setSections] = useState([])
   const [eventDetails, setEventDetails] = useState({
     title: undefined,
     start: 0,
@@ -28,16 +30,44 @@ const MyCalenderPage = ({flipNavRenderSwitch}) => {
     location: undefined,
     viewable: false,
   })
-
-  const loadEvents = async () => {
+ 
+  const loadUserEvents = async () => {
     const response = await API.getEvents()
     const responseJson = await response.json()
+    responseJson.map((event) => {
+      event['owner'] = 'user'
+    })
     setEvents(responseJson)
+  }
+
+  const loadSectionEvents = async (sectionID) => {
+    const response = await SectionAPI.getSectionEvents(sectionID)
+    const responseJson = await response.json()
+    responseJson.map((event) => {
+      event['owner'] = 'section'
+    })
+    setEvents((oldEvents) => {
+      return [...oldEvents].concat(responseJson)
+    })
+  }
+
+  const loadEvents = async () => {
+    await loadUserEvents()
   }
   
   useEffect(() => {
+    sections.map((section) => loadSectionEvents(section.ID))
+  }, [sections])
+
+  useEffect(() => {
     loadEvents()
+    getSections()
   }, [])
+
+  const getSections = async () => {
+    const responseJson = await ClassMeetingAPI.getSections()
+    setSections(responseJson.sections);
+  };
   
   const handleSelectSlot = ({start, end}) => {
     setEventDetails({
@@ -94,7 +124,8 @@ const MyCalenderPage = ({flipNavRenderSwitch}) => {
   }
 
   const eventStyleGetter = (event) => {
-    return {style: {backgroundColor: 'green'}}
+    const color = (event.owner === 'user' ) ? 'blue' : 'black'
+    return {style: {backgroundColor: color}}
   }
 
   return (

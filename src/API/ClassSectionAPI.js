@@ -34,7 +34,15 @@ const addSection = (SectionObject) => {
 	})
   }
 
-
+	const getSectionEvents = async (SectionID) => {
+		let response = await fetch(`http://127.0.0.1:8000/api/sections/${SectionID}/events`, {
+			headers: {
+				Authorization: `JWT ${localStorage.getItem('token')}`,
+				'Content-Type': 'application/json'
+			}
+		})
+		return response
+	}
 
 const AddUserToSection = (SectionID) => {
 	return fetch(`http://127.0.0.1:8000/api/current_user/sections/${SectionID}/AddAStudent`, {
@@ -51,5 +59,6 @@ const AddUserToSection = (SectionID) => {
 	  fetchCurrentUserClasses,
 	  addSection,
 	  AddUserToSection,
-	  fetchAllClasses
+		fetchAllClasses,
+		getSectionEvents
   }
