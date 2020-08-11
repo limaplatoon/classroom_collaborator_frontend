@@ -29,15 +29,18 @@ const HandleSubmitNewSection = evt => {
 				Section: SectionName,
 				ProfessorLastName: ProfLastName,
 			}
-		ClassSectionAPI.addSection(SectionObject).then(history.push('/myClasses'))
+		ClassSectionAPI.addSection(SectionObject).then((responseRCVD => {
+			history.push('/myClasses')
+		}))
 }
 
 
 const Enroll = (SectionID) => {
 
- return ClassSectionAPI.AddUserToSection(SectionID).then(history.push('/myClasses'))
-
-
+ return ClassSectionAPI.AddUserToSection(SectionID).then(responseRCVD => {
+	 console.log(responseRCVD)
+	 history.push('/myClasses')
+ })
 }
 
 

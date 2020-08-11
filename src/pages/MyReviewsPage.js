@@ -4,6 +4,7 @@ import ClassSectionAPI from '../API/ClassSectionAPI'
 import ReviewList from '../components/Reviews/ReviewsList'
 import ReviewForm from '../ReviewForm/ReviewForm'
 import { useHistory } from "react-router-dom";
+import './MyReviewsPage.css' 
 
 
 const MyReviewsPage = () => {
@@ -17,11 +18,14 @@ const [UserSections, setUserSections] = useState()
 let history = useHistory();
 
 
-//Sets Reviews in state to the Reviews associated with the current user from the database
+// Sets Reviews in state to the Reviews associated with the current user from the database
+
 useEffect(() => {
 ReviewsAPI.fetchReviews().then(ListOfReviews => {
 	setreviews(ListOfReviews["reviews"])})
 },[]);
+
+
 
 //Sets USERSECTIONS to Sections associated
 useEffect(() => {
@@ -42,28 +46,28 @@ const HandleSubmitReview = evt => {
 			sectionID: SectionID,
 			description: Description,
 		}
-		console.log(reviewObject)
-
-	ReviewsAPI.addReviews(reviewObject).then(console.table).then(history.push('/myReviews'))
-	
-
 		
-
+	ReviewsAPI.addReviews(reviewObject).then(AllReviewsByUser => {
+		setreviews(AllReviewsByUser["reviews"])
+	});
 }
 
-
+// useEffect(() => {
+// ReviewsAPI.fetchReviews().then(ListOfReviews => {
+// 	setreviews(ListOfReviews["reviews"])})
+// },[]);
 
 
 
 	
   return (
     <div>
-		<h1>Leave a new Review!
+		<h1 style = {{ textalign:'center' }}>Leave a new Review!
         </h1>
 		<br></br>
 		<ReviewForm HandleSubmitReview= {HandleSubmitReview} UserSections={UserSections} />
 
-<h2> Your Past Reviews! </h2>
+<h2> Your Past Class Reviews! </h2>
         <ReviewList Reviews={reviews} />
     </div>
   )

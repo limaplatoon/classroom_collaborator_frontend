@@ -2,7 +2,9 @@
 
 body {
 	font-family: "Rubik";
-	/* background-color: #99a3c2; */
+
+	background-color: #CAF0F8;
+
 }
 
 code {
@@ -27,4 +29,15 @@ code {
 	text-align: center;
 	top: -10px;
 	width: 100%;
+}
+
+.jumbotron {
+margin-bottom: 0px;
+background-position: 0% 25%;
+background-size: cover;
+background-repeat: no-repeat;
+border: 5px;
+border-color: #0077B6;
+border-style:solid;
+font-size:24px
 }

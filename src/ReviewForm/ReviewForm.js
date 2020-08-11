@@ -42,11 +42,12 @@ render()
 	return (
 		<Form onSubmit= {this.props.HandleSubmitReview}>
 		<Form.Group>
-			<label>Select Your Class Below</label>
+			<label>Select a Class</label>
 			<React.Fragment>
 			  {this.renderOptions()}
 			</React.Fragment>
 		<br></br>
+		<label>Leave a detailed review of your experience in this class? Was it homework heavy? Are tests 80% of your Final Grade? Let it be known below.</label>
         <Form.Control size="lg" type="text" placeholder="Description" />
 		</Form.Group>
   <Button type='Submit'>Submit</Button>
