@@ -13,18 +13,17 @@ class AvailableSectionList extends Component {
 		  const classes=this.props.AvailableClasses.map(Class => {
 			return(
 
-<div className="jumbo" key={Class.id} >
-<Jumbotron>
+<div  key={Class.id} >
+<Jumbotron fluid>
 <Container>
-<p>
-<button onClick= {() => this.props.enroll( Class.ID )}    >Join This Class!</button>
+<div>
+	<div>Class Name:<Link to={`/section/${Class.ID}` }>{Class.Name}</Link> </div>	
 <br></br>
-	<Link to="http://localhost:3000/" >{Class.Section}</Link> 
-	
-<br></br>
-	<Link to={ `/Reviews/Professor/${Class.ProfID}` }>{Class.Professor}</Link> 
-	<br></br>
-</p>
+	<div>Instructor:<Link to={ `/Reviews/Professor/${Class.ProfID}` }>Professor {Class.Professor}</Link> </div>
+<br></br>	
+<div><button onClick= {() => this.props.enroll( Class.ID )}    >Join This Class!</button></div>
+
+</div>
 </Container> 
 </Jumbotron>
 </div> 

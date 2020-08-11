@@ -17,7 +17,6 @@ useEffect(() => {
   return (
     <div>
 	  <h2> Your Enrolled Classes! </h2>
-	  add links to each of these to the main calendar view for each class
         <MySectionList CurrentClasses={CurrentClasses} />
     </div>
   )
