@@ -30,6 +30,7 @@ const fetchReviewsByProfessor = (ProfID) => {
 	  method: 'POST',
 	  body: JSON.stringify(ReviewObject)
 	})
+	.then((response) => response.json())
   }
 
   const fetchProfessor = (ProfID) => {
