@@ -2,10 +2,15 @@ import React, { useState, useEffect } from 'react';
 import AvailableSectionList from '../components/Sections/AvailableSectionList';
 import ClassSectionAPI from '../API/ClassSectionAPI';
 import { Redirect } from 'react-router'; 
+import { useHistory } from "react-router-dom";
+import SectionForm from '../SectionForm/SectionForm';
+
 
 const JoinClassPage = () => {
 	
-const [AvailableClasses, setAvailableClasses] = useState([{Section:'Turn On The Back End',Professor:'You idiot'}])
+const [AvailableClasses, setAvailableClasses] = useState([{Section:'Turn On The Back End',Professor:'Please'}])
+
+let history = useHistory();
 
 //get all of the class sections that are available. 
 useEffect(() => {
@@ -14,9 +19,24 @@ useEffect(() => {
 	})},[]);
 
 
+const HandleSubmitNewSection = evt => {
+		evt.preventDefault();
+		console.log('Submitted');
+		const SectionName = (evt.target[1].value);
+		
+		const ProfLastName = (evt.target[0].value);
+		const SectionObject = {
+				Section: SectionName,
+				ProfessorLastName: ProfLastName,
+			}
+		ClassSectionAPI.addSection(SectionObject).then(history.push('/myClasses'))
+}
+
 
 const Enroll = (SectionID) => {
- return ClassSectionAPI.AddUserToSection(SectionID).then(console.table)
+
+ return ClassSectionAPI.AddUserToSection(SectionID).then(history.push('/myClasses'))
+
 
 }
 
@@ -25,11 +45,8 @@ const Enroll = (SectionID) => {
 
   return (
     <div>
-      <h1>Add The ability to create a new class section</h1>
-	  Yeah, add a search function similar to news site onchange
-	  
-	  {/* <h2>I have created an api endpoint to add a user to a class section on the back end</h2>
-	  <h2>I have created an api endpoint to create a class section and add the current user to that class section on the back end</h2>  */}
+      <h1>If your class section can't be found below, create a new one! </h1>
+	 <SectionForm HandleSubmitNewSection={HandleSubmitNewSection}/>
 	  <h2> Join One of the Below Classes! </h2>
         <AvailableSectionList AvailableClasses={AvailableClasses} enroll = {Enroll}/>
     </div>

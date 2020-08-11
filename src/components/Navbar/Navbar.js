@@ -7,6 +7,7 @@ import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Popover from "react-bootstrap/Popover";
 import Notifications from "../Notifications/Notifications";
 import NotificationsAPI from "../../API/NotificationsAPI";
+import Logout from "../../pages/authentication/logout.js";
 
 import "./NavBar.css";
 import logo from "../../static/img/logoClassUp.png";
@@ -21,11 +22,14 @@ import classes from "../../static/img/classes.png";
 import { NavBarContext } from "../../context/NavBarContext";
 
 const Navbar = () => {
-  const {alerts, loadNotifications, clearNotification} = useContext(NavBarContext)
+  const { alerts, loadNotifications, clearNotification } = useContext(NavBarContext)
 
-  useEffect(() => {
+  {/* 
+   useEffect(() => {
     loadNotifications();
   }, []);
+
+            */}
 
   const popover = (
     <Popover id="popover-basic">
@@ -36,8 +40,8 @@ const Navbar = () => {
             handleItemClick={clearNotification}
           />
         ) : (
-          <span>no notifications</span>
-        )}
+            <span>no notifications</span>
+          )}
       </Popover.Content>
     </Popover>
   );

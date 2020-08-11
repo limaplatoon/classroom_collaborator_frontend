@@ -45,9 +45,43 @@ const deleteMeeting = async (meetingID) => {
   })
 }
 
+const getUserMeetings = async () => {
+  let response = await fetch(`${baseUrl}/api/current_user/meetings`, {
+    headers: {
+      'Authorization': `JWT ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
+    }
+  }) 
+  return response
+}
+
+const getMeetingNotes = async (meetingID) => {
+  let response = await fetch(`${baseUrl}/api/meetings/${meetingID}/notes`, {
+    headers: {
+      'Authorization': `JWT ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
+    }
+  }) 
+  return response
+}
+
+const getMeetingComments = async (meetingID) => {
+  let response = await fetch(`${baseUrl}/api/meetings/${meetingID}/comments`, {
+    headers: {
+      'Authorization': `JWT ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
+    }
+  }) 
+  return response
+}
+
 export default {
   getSections,
   getMeetings,
   newMeeting,
-  deleteMeeting
+  deleteMeeting,
+  getMeetingNotes,
+  getMeetingComments,
+  getUserMeetings,
 }
+

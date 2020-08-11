@@ -1,7 +1,7 @@
 const baseUrl = 'http://localhost:8000'
-const token = localStorage.getItem('token')
 
 const getNotifications = async () => {
+  const token = localStorage.getItem('token')
   let response = await fetch(`${baseUrl}/api/alerts`, {
     headers: {
       'Content-Type': 'application/json',
@@ -12,6 +12,7 @@ const getNotifications = async () => {
 }
 
 const updateNotifications = async (alertID) => {
+  const token = localStorage.getItem('token')
   let response = await fetch(`${baseUrl}/api/alerts/${alertID}`, {
     headers: {
       'Content-Type': 'application/json',

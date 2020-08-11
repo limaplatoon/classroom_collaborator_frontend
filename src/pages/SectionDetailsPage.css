@@ -1,0 +1,21 @@
+.sectionDetailTitle {
+  margin: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.meetingListTitle {
+  margin: 1rem;
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+} 
+
+.meetingItem {
+  cursor: pointer;
+}
+
+.meetingItem:hover {
+  background-color: #e4f5ff
+}
