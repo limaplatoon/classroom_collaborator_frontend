@@ -33,7 +33,7 @@ const fetchReviewsByProfessor = (ProfID) => {
   }
 
   const fetchProfessor = (ProfID) => {
-	  	return fetch (`http://127.0.0.1:8000/api/${ProfID}`, 
+	  	return fetch (`http://127.0.0.1:8000/api/Professor/${ProfID}`, 
 	{headers: {
 		Authorization: `JWT ${localStorage.getItem('token')}`,
 		'Content-Type': 'application/json',

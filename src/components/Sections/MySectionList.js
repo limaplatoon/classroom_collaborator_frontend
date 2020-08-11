@@ -12,16 +12,15 @@ class MySectionList extends Component {
 			return(
 
 <div className="jumbo" key={Class.id} >
-<Jumbotron>
+<Jumbotron style={{backgroundcolor:'#0000FF'}} >
 <Container>
-<p>
+<h2>
 	 <br></br>
-	 See this Class Calendar! <br></br>
+	<Link to={ `nothing yet`}>See this Class Calendar!</Link> <br></br>
 	{Class.Section} <br></br>
-
 	<Link to={ `/Reviews/Professor/${Class.ProfID}` }>{Class.Professor}</Link>
  <br></br>
-</p>
+</h2>
 </Container> 
 </Jumbotron>
 </div> 

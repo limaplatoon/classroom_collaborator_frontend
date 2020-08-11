@@ -4,10 +4,10 @@ import Form from 'react-bootstrap/Form'
 import { Redirect } from 'react-router';
 
 class ReviewForm extends Component {
-constructor(props) {
-  super(props);
+// constructor(props) {
+//   super(props);
 
-}
+// }
 
    
 

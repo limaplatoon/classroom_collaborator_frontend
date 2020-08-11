@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react'
-// import Jumbotron from 'react-bootstrap/Jumbotron'
-import Form from 'react-bootstrap/Form'
 import ReviewsAPI from '../API/ReviewsAPI' 
 import ClassSectionAPI from '../API/ClassSectionAPI' 
 import ReviewList from '../components/Reviews/ReviewsList'
@@ -60,7 +58,7 @@ const HandleSubmitReview = evt => {
 	
   return (
     <div>
-		<h1>Leave a new Review for one of your classes here
+		<h1>Leave a new Review!
         </h1>
 		<br></br>
 		<ReviewForm HandleSubmitReview= {HandleSubmitReview} UserSections={UserSections} />
