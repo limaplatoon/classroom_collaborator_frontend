@@ -81,13 +81,14 @@ const HomePage = () => {
 
     const response = await API.updateProfile(data)
     //const responseJson = await response.json()
-    console.log(profile)
+
 
   }
 
   return (
 
     <div >
+
       <br></br>
       <div className="row new" sm={{ size: 6, order: 2, offset: 1 }}>
         {Object.keys(profile).length > 0 ?
@@ -201,7 +202,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
 
   )
 }

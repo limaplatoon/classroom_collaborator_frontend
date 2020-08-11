@@ -6,13 +6,11 @@ import Login from "./login";
 
 function Logout() {
   let history = useHistory();
+  localStorage.setItem("token", '');
 
-  function handleLogOut() {
-    localStorage.setItem("token", '');
+  localStorage.clear();
+  history.push("/login");
 
-    localStorage.clear();
-    history.push("/login");
-  }
 
   return (
     <div>
