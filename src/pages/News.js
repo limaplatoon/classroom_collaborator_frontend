@@ -22,16 +22,18 @@ const News = () => {
 
   return (
     <ListGroup>
-      {news.map(n => (
+      {news.map((n, idx) => (
 
-        <ListGroupItem tag="a" target="_blank" href={n.url}>
-          <ListGroupItemHeading>{n.title}</ListGroupItemHeading>
+        <ListGroupItem key={idx.toString()} tag="a" target="_blank" href={n.url} >
+          <ListGroupItemHeading >{n.title}</ListGroupItemHeading>
+
           <ListGroupItemText>
             {n.description}
           </ListGroupItemText>
         </ListGroupItem>
-      ))}
-    </ListGroup>
+      ))
+      }
+    </ListGroup >
 
   );
 

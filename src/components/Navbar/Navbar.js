@@ -71,7 +71,6 @@ const Navbar = () => {
             />
           </OverlayTrigger>
         </BootstrapNavbar.Brand>
-
         <BootstrapNavbar.Brand >
           <Nav.Link as={Link} to="/logout">
             <Image className="navbarImage" src={logout} />
