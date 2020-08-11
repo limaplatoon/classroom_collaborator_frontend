@@ -1,7 +1,7 @@
 const baseUrl = 'http://localhost:8000'
-const token = localStorage.getItem('token')
 
 const getEvents = async () => {
+  const token = localStorage.getItem('token')
   let response = await fetch(`${baseUrl}/api/events`, {
     headers: {
       'Content-Type': 'application/json',
@@ -12,6 +12,7 @@ const getEvents = async () => {
 }
 
 const updateEvent = async (eventID, eventObj) => {
+  const token = localStorage.getItem('token')
   let response = await fetch(`${baseUrl}/api/events/${eventID}`, {
     headers: {
       'Content-Type': 'application/json',
@@ -24,6 +25,7 @@ const updateEvent = async (eventID, eventObj) => {
 }
 
 const newEvent = async (eventObj) => {
+  const token = localStorage.getItem('token')
   let response = await fetch(`${baseUrl}/api/events/new`, {
     headers: {
       'Content-Type': 'application/json',
@@ -36,6 +38,7 @@ const newEvent = async (eventObj) => {
 }
 
 const deleteEvent = async (eventID) => {
+  const token = localStorage.getItem('token')
   let response = await fetch(`${baseUrl}/api/events/${eventID}`, {
     headers: {
       'Content-Type': 'application/json',

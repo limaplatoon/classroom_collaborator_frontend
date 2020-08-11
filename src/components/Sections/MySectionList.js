@@ -11,13 +11,15 @@ class MySectionList extends Component {
 		  const classes= this.props.CurrentClasses.map(Class => {
 			return(
 
-<div className="jumbo" key={Class.id} >
+
+<div className="jumbo" key={Class.ID} >
 <Jumbotron style={{backgroundcolor:'#0000FF'}} >
+
 <Container>
 <h2>
 	 <br></br>
-	<Link to={ `nothing yet`}>See this Class Calendar!</Link> <br></br>
-	{Class.Section} <br></br>
+	 <Link to={ `/section/${Class.ID}` } style={{fontSize: '2rem'}}>{Class.Section} - {Class.Name}</Link>
+	 <br></br>
 	<Link to={ `/Reviews/Professor/${Class.ProfID}` }>{Class.Professor}</Link>
  <br></br>
 </h2>
