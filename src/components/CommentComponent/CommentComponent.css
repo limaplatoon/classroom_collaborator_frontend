@@ -1,0 +1,26 @@
+
+.commentContainer {
+  margin-left: 25px;
+}
+
+.commentText {
+  font-size: 1.25rem;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.commentAuthor {
+  font-size: 0.75rem;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.commentReply {
+  color: blue;
+  margin-left: 2px;
+}
+
+.commentReply:hover {
+  cursor: pointer;
+  font-weight: bolder;
+}

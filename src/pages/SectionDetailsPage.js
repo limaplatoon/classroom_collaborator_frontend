@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useState, useContext} from 'react'
 import {Link} from 'react-router-dom'
 import ListGroup from 'react-bootstrap/ListGroup'
 import ClassSectionAPI from '../API/ClassSectionAPI'
@@ -8,41 +8,28 @@ import moment from 'moment'
 
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import './SectionDetailsPage.css'
+import { MeetingContext } from '../context/MeetingContext'
 
 const localizer = momentLocalizer(moment);
-const fakeMeetings = [
-  {
-    date: new Date(2020, 7, 1),
-    posts: 3,
-    notes: 2,
-  },
-  {
-    date: new Date(2020, 7, 3),
-    posts: 10,
-    notes: 5,
-  },
-  {
-    date: new Date(2020, 7, 4),
-    posts: 1,
-    notes: 0,
-  },
 
-]
 const formatDatetime = (datetime) => {
   return moment(datetime).format('M/D LT')
 }
 
 
-const SectionDetails = ({sectionID}) => {
+const SectionDetails = ({sectionID, history}) => {
+  const {notes, getNotes, comments, getComments} = useContext(MeetingContext)
+
   const [details, setDetails] = useState({})
   const [events, setEvents] = useState([])
-  const [meetings, setMeetings] = useState(fakeMeetings)
+  const [meetings, setMeetings] = useState([])
 
 
   const loadDetails = async () => {
     const response = await ClassSectionAPI.getSectionDetails(1)
     const responseJson = await response.json()
-    setDetails(responseJson)
+    setDetails(responseJson)    
+    setMeetings(responseJson.meeting)
   }
 
   const loadEvents = async () => {
@@ -50,11 +37,12 @@ const SectionDetails = ({sectionID}) => {
     const responseJson = await response.json()
     setEvents(responseJson)
   }
-  
 
   useEffect(() => {
     loadDetails()
     loadEvents()
+    getNotes()
+    getComments()
   }, [])
 
   
@@ -73,8 +61,8 @@ const SectionDetails = ({sectionID}) => {
       <div className='meetingListTitle'>Meeting Notes</div>
       <ListGroup className='meetingList'>
         {meetings.map((meeting, i) => 
-          <ListGroup.Item className='meetingItem' key={i} >
-            {formatDatetime(meeting.date)} - {meeting.posts} posts, {meeting.notes} notes
+          <ListGroup.Item className='meetingItem' key={i} onClick={() => history.push("test2")} >
+            {formatDatetime(meeting.date)} - {comments[meeting.id] && comments[meeting.id].length} posts, {notes[meeting.id] && notes[meeting.id].length} notes
           </ListGroup.Item>
         )}
       </ListGroup>

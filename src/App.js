@@ -16,6 +16,8 @@ import ProtectedRoute from './pages/authentication/requiresAuth';
 import Profile from './pages/ProfilePage';
 import NavBarContextProvider from "./context/NavBarContext";
 import SectionDetailsPage from "./pages/SectionDetailsPage";
+import MeetingContextProvider from "./context/MeetingContext";
+import MeetingPage from "./pages/MeetingPage";
 
 
 
@@ -40,7 +42,10 @@ const App = () => {
               <Route exact path='/JoinAClass' component={JoinClassPage} /> 
               <Route exact path='/my-calender' component={MyCalenderPage} />
               <Route exact path='/profile' component={Profile} />
-              <Route exact path='/test' component={SectionDetailsPage} />
+              <MeetingContextProvider>
+                <Route exact path='/test1' component={SectionDetailsPage} />
+                <Route exact path='/test2' component={MeetingPage} />
+              </MeetingContextProvider>
             </Container>
           </NavBarContextProvider>
       }
