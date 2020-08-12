@@ -160,7 +160,7 @@ const HomePage = () => {
                     name="college"
                     value={formData.college}
                     onChange={(e) => handleChange(e)}
-                  /><br /><br />
+                  />
                   <p><label for="profile_picture">Choose Image to Upload</label></p>
                   <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} />
                   <Button onClick={backToPage} color=" secondary" type="submit" >Submit</Button>
