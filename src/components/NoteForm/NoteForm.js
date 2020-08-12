@@ -27,7 +27,7 @@ const NoteForm = ({ submitForm, closePopup}) => {
   
 
   return (
-    <div>
+    <div style={{margin: '50px'}}>
       <Form onSubmit={handleSubmit}>
 
         <Form.Group as={Row} controlId="formNoteDescription">
@@ -40,7 +40,7 @@ const NoteForm = ({ submitForm, closePopup}) => {
         <fieldset>
           <Form.Group as={Row} controlId='formType'>
             <Form.Label as="legend" column sm={2}>
-              Radios
+              Note Type
             </Form.Label>
             <Col sm={10}>
               <Form.Check
@@ -86,7 +86,7 @@ const NoteForm = ({ submitForm, closePopup}) => {
         }
         <Form.Group as={Row}>
           <Col sm={{ span: 10, offset: 2 }}>
-            <Button type="submit">submit</Button>
+            <Button type="submit" style={{marginRight: '5px'}}>submit</Button>
             <Button onClick={() => {closePopup()}}>cancel</Button>
           </Col>
         </Form.Group>
