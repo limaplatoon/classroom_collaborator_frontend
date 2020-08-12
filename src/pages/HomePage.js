@@ -159,11 +159,10 @@ const HomePage = () => {
                     type="text"
                     name="college"
                     value={formData.college}
-                    onChange={(e) => handleChange(e)}
-                  /><br /><br />
-                  <p><label for="profile_picture">Choose Image to Upload</label></p>
+                    onChange={(e) => handleChange(e)}  />
+                  <p><label for="profile_picture">Choose Image to Upload</label>
                   <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} />
-                  <Button onClick={backToPage} color=" secondary" type="submit" >Submit</Button>
+                  <Button onClick={backToPage} color=" secondary" type="submit" >Submit</Button> </p>
                 </form>
               </ModalBody>
               <ModalFooter>
