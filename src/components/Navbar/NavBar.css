@@ -31,3 +31,8 @@ Nav.Link {
 /* .navbar:hover {
   background: #53a7ea;
 } */
+
+.navbar-light .navbar-nav .nav-link {
+  color: black;
+  font-weight: bold;
+}

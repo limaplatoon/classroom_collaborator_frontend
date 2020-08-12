@@ -9,6 +9,8 @@ import { NavBarContext } from "../context/NavBarContext"
 
 import 'react-big-calendar/lib/css/react-big-calendar.css'
 import EventForm from '../components/EventForm/EventForm'
+import './MyCalenderPage.css'
+
 const localizer = momentLocalizer(moment);
 
 const setDateTime = (date, seconds) => {
@@ -132,7 +134,7 @@ const MyCalenderPage = () => {
         defaultDate={new Date()}
         defaultView="month"
         events={events}
-        style={{ height: "100vh" }}
+        style={{ height: "100vh", backgroundColor: 'white', padding: '50px', border: '1px solid black', borderRadius: '10px'}}
         onSelectSlot={handleSelectSlot}
         onSelectEvent={handleSelectEvent}
         eventPropGetter={eventStyleGetter}

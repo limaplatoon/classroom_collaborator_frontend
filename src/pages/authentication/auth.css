@@ -11,7 +11,7 @@
 .free-membership {
   height: 19.7px;
   width: 320px;
-  color: #8798ad;
+  color: black;
   font-family: Rubik;
   font-size: 15px;
   line-height: 22px;
@@ -20,7 +20,7 @@
 
 .bgregister {
   /* Full height */
-  width: auto;
+  width: 105%;
   height: auto;
   /* Center and scale the image nicely */
   background-position: center;
@@ -31,7 +31,7 @@
 .please-enter-your-cr {
   height: 22px;
   width: 287.66px;
-  color: #8798ad;
+  color: black;
   font-family: Rubik;
   font-size: 15px;
   line-height: 22px;
@@ -49,7 +49,7 @@
 .sign-in-to-class-up {
   height: 32px;
   width: 287.96px;
-  color: #2e384d;
+  color: black;
   font-family: Rubik;
   font-size: 34px;
   font-weight: 300;

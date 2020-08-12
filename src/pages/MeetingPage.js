@@ -84,7 +84,7 @@ const MeetingPage = (props) => {
         <Button onClick={handleAddNote}>add notes</Button>
       </div>
 
-      <div style={{marginBlock: '50px'}}>
+      <div style={{marginBlock: '50px', backgroundColor: 'white', padding: '10px', borderRadius: '5px'}}>
         <div className='noteHeaders'>Comments</div>
         <div className='commentReply' onClick={() => {setOpenPopupComments('')}}>add comment</div>
         

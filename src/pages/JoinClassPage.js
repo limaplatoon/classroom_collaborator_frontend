@@ -32,6 +32,8 @@ const HandleSubmitNewSection = evt => {
 		ClassSectionAPI.addSection(SectionObject).then((responseRCVD => {
 			history.push('/myClasses')
 		}))
+		evt.target[0].value = ''
+		evt.target[1].value = ''
 }
 
 
@@ -48,9 +50,9 @@ const Enroll = (SectionID) => {
 
   return (
     <div>
-      <h1>If your class section can't be found below, create a new one! </h1>
+      <h1>Can't Find a Class, Create a New One! </h1>
 	 <SectionForm HandleSubmitNewSection={HandleSubmitNewSection}/>
-	  <h2> Join One of the Below Classes! </h2>
+	  <h1> Join One of the Below Classes! </h1>
         <AvailableSectionList AvailableClasses={AvailableClasses} enroll = {Enroll}/>
     </div>
   )

@@ -43,8 +43,8 @@ export const Login = ({ history }) => {
       <Row>
         <Col sm="12" xxs="12" md="4" lg="4">
           <div className={!isMobile && "centerdiv"}>
-            <div className="ml-5">
-              <Image className="logo" src={Logo} />
+            <div style={{textAlign: 'center'}}>
+              <Image style={{backgroundColor: 'white', opacity: '0.8', borderRadius: '20px'}} className="logo" src={Logo} />
             </div>
 
             <h4 className="mt-3 sign-in-to-class-up">Sign in to ClassUp</h4>
@@ -76,10 +76,10 @@ export const Login = ({ history }) => {
                 Login
               </Button>
               <div className="text-center pt-3">
-                <Link to="/register">
+                <Link style={{color: 'blue'}} to="/register">
                   <p>Create Account</p>
                 </Link>
-                <Link to="/forgot">
+                <Link style={{color: 'blue'}} to="/forgot">
                   <p> Forgot your password?</p>
                 </Link>
               </div>

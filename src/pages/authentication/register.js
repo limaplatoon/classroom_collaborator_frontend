@@ -9,6 +9,7 @@ import API from "../../API/AuthAPI";
 
 import { Image } from "react-bootstrap";
 import { Button, Form, FormGroup, Label, Input, Row, Col } from "reactstrap";
+import gradPic from '../../img/grads.jpg'
 
 const validEmailRegex = RegExp(
   /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
@@ -108,8 +109,8 @@ export const Register = ({ history }) => {
       <Row>
         <Col sm="12" xxs="12" md="4" lg="4">
           <div className={!isMobile && "centerdiv"}>
-            <div className="ml-5">
-              <Image className="logo" src={Logo} />
+            <div style={{textAlign: 'center'}}>
+              <Image style={{backgroundColor: 'white', opacity: '0.8', borderRadius: '20px'}} className="logo" src={Logo} />
             </div>
 
             <h4 className="mt-3 ml-5 sign-in-to-class-up">Join ClassUp</h4>
@@ -173,7 +174,7 @@ export const Register = ({ history }) => {
               </Button>
 
               <div className="text-center pt-3">
-                <Link to="/login">
+                <Link style={{color: 'blue'}} to="/login">
                   <p> Already have an account? Sign in</p>
                 </Link>
               </div>
@@ -183,7 +184,7 @@ export const Register = ({ history }) => {
 
         {!isMobile && (
           <Col sm="12" xxs="12" md="8" lg="8">
-            <Image className="bgregister" src={Log}></Image>
+            <Image className="bgregister" src={gradPic}></Image>
           </Col>
         )}
       </Row>

@@ -50,6 +50,7 @@ const HandleSubmitReview = evt => {
 	ReviewsAPI.addReviews(reviewObject).then(AllReviewsByUser => {
 		setreviews(AllReviewsByUser["reviews"])
 	});
+	evt.target[1].value = ''
 }
 
 // useEffect(() => {
@@ -62,12 +63,12 @@ const HandleSubmitReview = evt => {
 	
   return (
     <div>
-		<h1 style = {{ textalign:'center' }}>Leave a new Review!
+		<h1 style = {{ textalign:'center' }}>Leave a New Review!
         </h1>
 		<br></br>
 		<ReviewForm HandleSubmitReview= {HandleSubmitReview} UserSections={UserSections} />
 
-<h2> Your Past Class Reviews! </h2>
+<h1> Your Past Class Reviews! </h1>
         <ReviewList Reviews={reviews} />
     </div>
   )

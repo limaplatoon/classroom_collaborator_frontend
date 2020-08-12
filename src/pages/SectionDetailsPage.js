@@ -110,6 +110,7 @@ const SectionDetails = (props) => {
       <div className='sectionDetailTitle'>{details.Section} - {details.Name} - Professor {details.professor_first_name} {details.professor_last_name}</div>
       {(events.length > 0) &&
         <Calendar
+          style={{backgroundColor: 'white', padding: '10px', borderRadius: '5px', border: '1px solid black'}}
           selectable
           localizer={localizer}
           defaultDate={new Date()}
@@ -123,7 +124,7 @@ const SectionDetails = (props) => {
 
       <div className='meetingListTitle'>Section Meeting</div>
       {meetings &&
-        <ListGroup className='meetingList'>
+        <ListGroup className='meetingList' style={{border: '1px solid black'}}>
           {meetings.map((meeting, i) => 
             <ListGroup.Item className='meetingItem' key={i} onClick={() => history.push(`/meeting/${meeting.id}`)} >
               {formatDatetime(meeting.date)} - {comments[meeting.id] && comments[meeting.id].length} posts, {notes[meeting.id] && notes[meeting.id].length} notes

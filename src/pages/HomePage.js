@@ -27,7 +27,8 @@ const HomePage = () => {
   const toggle = () => setModal(!modal);
   const backToPage = () => {
     setModal(!modal);
-    window.location.href = '/'
+    // window.location.href = '/'
+    profileData()
   }
 
   const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
@@ -35,6 +36,7 @@ const HomePage = () => {
   const profileData = async () => {
     const response = await API.getProfile()
     const responseJson = await response.json()
+    console.log(responseJson)
     setProfile(responseJson)
     setFormData(responseJson)
     return responseJson
@@ -57,20 +59,22 @@ const HomePage = () => {
   }
 
   const createProfile = async (e) => {
+    setModal(!modal);
     e.preventDefault();
     const decToken = jwtDecode(localStorage.getItem("token"));
     const data = new FormData();
     data.append("first_name", formData.first_name);
-    data.append("last_name", formData.first_name);
+    data.append("last_name", formData.last_name);
     data.append("college", formData.college);
     data.append("username", decToken.user_id);
     data.append("profile_picture", formData.profile_picture);
 
 
-    console.log(data.get('profile_picture'))
+    // console.log(data.get('profile_picture'))
 
     const response = await API.createProfile(data)
     //const responseJson = await response.json()
+    setProfile({...formData})
 
   }
 
@@ -92,14 +96,14 @@ const HomePage = () => {
 
 
   }
-  console.log(profile.last_name)
+  // console.log(profile.last_name)
 
   return (
-    <div class="container" style={{
-      backgroundColor: '#f4f6fc',
+    <div class="container myProfile" style={{
+      // backgroundColor: '#f4f6fc',
       minHeight: '100vh',
 
-      backgroundRepeat: 'no-repeat',
+      // backgroundRepeat: 'no-repeat',
       // backgroundImage: `url(${Title})`
     }}>
 
@@ -130,7 +134,7 @@ const HomePage = () => {
             </div>
 
             <Modal style={{ width: '30rem' }} isOpen={modal} toggle={toggle}>
-              <ModalHeader toggle={toggle} close={closeBtn}>Modal title</ModalHeader>
+              <ModalHeader toggle={toggle} close={closeBtn}>Edit Profile</ModalHeader>
               <ModalBody>
                 <form onSubmit={updateProfile}>
                   <label>First Name</label>
@@ -147,22 +151,22 @@ const HomePage = () => {
                     name="last_name"
                     value={formData.last_name}
                     onChange={(e) => handleChange(e)} /> </p>
-                  <label>College</label>
+                  <label>College</label><br />
                   <input
                     placeholder="College"
                     type="text"
                     name="college"
                     value={formData.college}
                     onChange={(e) => handleChange(e)}
-                  />
+                  /><br /><br />
 
                   <p><label for="profile_picture">Choose Image to Upload</label></p>
                   <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} />
-                  <Button onClick="window.location.href = '/';" color=" secondary" type="submit" >Submit</Button>
+                  <Button onClick={backToPage} color=" secondary" type="submit" >Submit</Button>
                 </form>
               </ModalBody>
               <ModalFooter>
-                <Button color="info" onClick={backToPage}>Back-To-Page</Button>
+                <Button color="info" onClick={() => setModal(false)}>cancel</Button>
               </ModalFooter>
             </Modal>
 
@@ -181,7 +185,7 @@ const HomePage = () => {
 
               />
               </p>
-              <p> <label>Last Name</label>
+              <p> <label>Last Name</label><br />
                 <input
                   placeholder="Last Name"
                   type="text"
@@ -191,8 +195,8 @@ const HomePage = () => {
                 />
               </p>
 
-              <label>College</label>
-              <p><input
+              <p><label>College</label><br />
+              <input
                 placeholder="College"
                 type="text"
                 name="college"
@@ -201,9 +205,9 @@ const HomePage = () => {
               />
               </p>
 
-              <label for="profile_picture">Choose Image to Upload</label>
-              <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} />
-              <Button onClick={backToPage} color="success" type="submit">Upload & submit </Button>
+              <label for="profile_picture">Choose Image to Upload</label><br />
+              <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} /><br /><br />
+              <Button color="success" type="submit">Upload & submit </Button>
             </form>
 
           </div>}

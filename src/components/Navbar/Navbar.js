@@ -37,7 +37,7 @@ const Navbar = () => {
   );
   return (
     <div>
-      <BootstrapNavbar className="navbar">
+      <BootstrapNavbar className="navbar" >
         <BootstrapNavbar.Brand>
           <Link to="/" style={{ textDecoration: "none" }}>
             <Image className="navbarLogo" src={logo} roundedCircle />
@@ -45,16 +45,16 @@ const Navbar = () => {
         </BootstrapNavbar.Brand>
 
         <Nav className="mr-auto">
-          <Nav.Link as={Link} to="/my-calender">
+          <Nav.Link className='myNavLink' as={Link} to="/my-calender">
             My Calendar
           </Nav.Link>
-          <Nav.Link as={Link} to="/myClasses">
+          <Nav.Link className='myNavLink' as={Link} to="/myClasses">
             My Classes
           </Nav.Link>
-          <Nav.Link as={Link} to="/myReviews">
+          <Nav.Link className='myNavLink' as={Link} to="/myReviews">
             My Reviews
           </Nav.Link>
-          <Nav.Link as={Link} to="/JoinAClass">
+          <Nav.Link className='myNavLink' as={Link} to="/JoinAClass">
             Join a Class
           </Nav.Link>
         </Nav>

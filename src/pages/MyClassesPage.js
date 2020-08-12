@@ -16,7 +16,7 @@ useEffect(() => {
 
   return (
     <div>
-	  <h2> Your Enrolled Classes! </h2>
+	  <h1> Your Enrolled Classes! </h1>
         <MySectionList CurrentClasses={CurrentClasses} />
     </div>
   )
