@@ -44,7 +44,7 @@ const HomePage = () => {
   }, [])
 
   const backToPage = () => {
-    setModal(!modal);
+    // setModal(!modal);
     window.location.href = '/'
     // profileData()
   }
@@ -61,7 +61,7 @@ const HomePage = () => {
   }
 
   const createProfile = async (e) => {
-    setModal(!modal);
+    // setModal(!modal);
     e.preventDefault();
     const decToken = jwtDecode(localStorage.getItem("token"));
     const data = new FormData();
@@ -161,14 +161,13 @@ const HomePage = () => {
                     value={formData.college}
                     onChange={(e) => handleChange(e)}
                   /><br /><br />
-
                   <p><label for="profile_picture">Choose Image to Upload</label></p>
                   <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} />
                   <Button onClick={backToPage} color=" secondary" type="submit" >Submit</Button>
                 </form>
               </ModalBody>
               <ModalFooter>
-                <Button color="info" onClick={backToPage} >cancel</Button>
+                <Button color="info" toggle={toggle} >cancel</Button>
               </ModalFooter>
             </Modal>
 
@@ -209,7 +208,7 @@ const HomePage = () => {
 
               <label for="profile_picture">Choose Image to Upload</label><br />
               <input type="file" name="profile_picture" id="profile_picture" onChange={handleFileChange} /><br /><br />
-              <Button color="success" type="submit">Upload & submit </Button>
+              <Button onClick={backToPage} color="success" type="submit">Upload & submit </Button>
             </form>
 
           </div>}
