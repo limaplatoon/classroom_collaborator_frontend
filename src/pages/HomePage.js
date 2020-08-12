@@ -25,11 +25,8 @@ const HomePage = () => {
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
-  const backToPage = () => {
-    setModal(!modal);
-    // window.location.href = '/'
-    profileData()
-  }
+
+
 
   const closeBtn = <button className="close" onClick={toggle}>&times;</button>;
 
@@ -46,6 +43,11 @@ const HomePage = () => {
     profileData()
   }, [])
 
+  const backToPage = () => {
+    setModal(!modal);
+    window.location.href = '/'
+    // profileData()
+  }
   const handleChange = (e) => {
     e.preventDefault();
     const { name, value } = e.target;
@@ -74,7 +76,7 @@ const HomePage = () => {
 
     const response = await API.createProfile(data)
     //const responseJson = await response.json()
-    setProfile({...formData})
+    setProfile({ ...formData })
 
   }
 
@@ -166,7 +168,7 @@ const HomePage = () => {
                 </form>
               </ModalBody>
               <ModalFooter>
-                <Button color="info" onClick={() => setModal(false)}>cancel</Button>
+                <Button color="info" onClick={backToPage} >cancel</Button>
               </ModalFooter>
             </Modal>
 
@@ -196,13 +198,13 @@ const HomePage = () => {
               </p>
 
               <p><label>College</label><br />
-              <input
-                placeholder="College"
-                type="text"
-                name="college"
-                value={formData.college}
-                onChange={(e) => handleChange(e)}
-              />
+                <input
+                  placeholder="College"
+                  type="text"
+                  name="college"
+                  value={formData.college}
+                  onChange={(e) => handleChange(e)}
+                />
               </p>
 
               <label for="profile_picture">Choose Image to Upload</label><br />
