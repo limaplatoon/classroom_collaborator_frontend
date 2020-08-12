@@ -22,12 +22,14 @@ useEffect(() => {
 const HandleSubmitNewSection = evt => {
 		evt.preventDefault();
 		console.log('Submitted');
-		const SectionName = (evt.target[1].value);
-		
+		const SectionID = (evt.target[1].value);
 		const ProfLastName = (evt.target[0].value);
+		const Name = (evt.target[2].value);
+
 		const SectionObject = {
-				Section: SectionName,
+				Section: SectionID,
 				ProfessorLastName: ProfLastName,
+				SectionName: Name
 			}
 		ClassSectionAPI.addSection(SectionObject).then((responseRCVD => {
 			history.push('/myClasses')
