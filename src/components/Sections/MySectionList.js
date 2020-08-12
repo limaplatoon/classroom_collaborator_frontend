@@ -20,6 +20,8 @@ class MySectionList extends Component {
 	 <br></br>
 	 <div>Class Name: <Link to={ `/section/${Class.ID}` } >{Class.Name}</Link></div>
 	 <br></br>
+	 <div>SectionID: {Class.Section}</div>
+	 <br></br>
 	<div>Professor: <Link to={ `/Reviews/Professor/${Class.ProfID}` }>{Class.Professor}</Link></div>
  <br></br>
 </div>
